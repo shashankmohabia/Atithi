@@ -21,15 +21,16 @@
             android:name=".BootActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+        <activity
+            android:name=".LanguageSelectionActivity"
+            android:label="Welcome to ATITHI">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".LanguageSelectionActivity"
-            android:label="Welcome to ATITHI" />
     </application>
 
 </manifest>
