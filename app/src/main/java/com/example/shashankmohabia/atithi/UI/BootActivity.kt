@@ -1,8 +1,10 @@
-package com.example.shashankmohabia.atithi
+package com.example.shashankmohabia.atithi.UI
 
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import com.example.shashankmohabia.atithi.Core.MainActivity
+import com.example.shashankmohabia.atithi.R
 import java.lang.Thread.sleep
 
 class BootActivity : AppCompatActivity() {
