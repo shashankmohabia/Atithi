@@ -1,5 +1,6 @@
 package com.example.shashankmohabia.atithi.UI
 
+import android.app.ActivityOptions
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
@@ -14,14 +15,12 @@ class BootActivity : AppCompatActivity() {
         setContentView(R.layout.activity_boot)
 
         val intent = Intent(this, MainActivity::class.java)
-        Thread{
+        Thread {
             try {
                 sleep(3000)
-            }
-            catch (e:InterruptedException){
+            } catch (e: InterruptedException) {
                 e.printStackTrace()
-            }
-            finally {
+            } finally {
                 startActivity(intent)
                 finish()
             }
