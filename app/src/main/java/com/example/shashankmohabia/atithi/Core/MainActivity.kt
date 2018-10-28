@@ -9,6 +9,7 @@ import android.view.Menu
 import android.view.MenuItem
 import com.example.shashankmohabia.atithi.Core.Home.LandingFragment
 import com.example.shashankmohabia.atithi.R
+import com.example.shashankmohabia.atithi.Utils.Extensions.startFragmentTransaction
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
 import kotlinx.android.synthetic.main.content_main.*
@@ -32,9 +33,32 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         nav_view.setNavigationItemSelectedListener(this)
 
+        setBottomNavBar()
     }
 
-
+    private fun setBottomNavBar() {
+        bottom_navigation.selectedItemId = R.id.home
+        startFragmentTransaction(LandingFragment())
+        bottom_navigation.setOnNavigationItemSelectedListener {
+            when(it.itemId){
+                R.id.home -> {
+                    startFragmentTransaction(LandingFragment())
+                    return@setOnNavigationItemSelectedListener true
+                }
+                R.id.explore -> {
+                    startFragmentTransaction(LandingFragment())
+                    return@setOnNavigationItemSelectedListener true
+                }
+                R.id.community -> {
+                    startFragmentTransaction(LandingFragment())
+                    return@setOnNavigationItemSelectedListener true
+                }
+                else -> {
+                    return@setOnNavigationItemSelectedListener  false
+                }
+            }
+        }
+    }
 
     override fun onBackPressed() {
         if (drawer_layout.isDrawerOpen(GravityCompat.START)) {
