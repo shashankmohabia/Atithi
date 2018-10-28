@@ -30,6 +30,7 @@ class MainActivity :
         setSupportActionBar(toolbar)
 
         setCaptureButton()
+        setNavigationButton()
 
         val toggle = ActionBarDrawerToggle(
                 this, drawer_layout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
@@ -39,6 +40,13 @@ class MainActivity :
         nav_view.setNavigationItemSelectedListener(this)
 
         setBottomNavBar()
+    }
+
+    private fun setNavigationButton() {
+        navigation_button.setOnClickListener { view ->
+            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                    .setAction("Action", null).show()
+        }
     }
 
     private fun setCaptureButton() {
