@@ -1,6 +1,8 @@
 package com.example.shashankmohabia.atithi.Core
 
+import android.content.Intent
 import android.os.Bundle
+import android.provider.MediaStore
 import android.support.design.widget.NavigationView
 import android.support.design.widget.Snackbar
 import android.support.v4.view.GravityCompat
@@ -23,6 +25,8 @@ class MainActivity :
         NavigationView.OnNavigationItemSelectedListener,
         ExploreFragment.OnListFragmentInteractionListener,
         CommunityFragment.OnListFragmentInteractionListener {
+
+    private val REQUEST_IMAGE_CAPTURE = 1
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,9 +54,12 @@ class MainActivity :
     }
 
     private fun setCaptureButton() {
-        capture_button.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                    .setAction("Action", null).show()
+        capture_button.setOnClickListener {
+            Intent(MediaStore.ACTION_IMAGE_CAPTURE).also { takePictureIntent ->
+                takePictureIntent.resolveActivity(packageManager)?.also {
+                    startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE)
+                }
+            }
         }
     }
 
