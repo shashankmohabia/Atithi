@@ -8,6 +8,13 @@
     tools:context=".Core.MainActivity"
     tools:showIn="@layout/app_bar_main">
 
+    <FrameLayout
+        android:id="@+id/mainFrame"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/capture_button"
         android:layout_width="wrap_content"
