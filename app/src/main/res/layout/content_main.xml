@@ -14,18 +14,31 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:src="@drawable/ic_camera" />
+        android:layout_marginBottom="8dp"
+        android:src="@drawable/ic_camera"
+        app:layout_constraintBottom_toTopOf="@+id/navigation_button"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/navigation_button"
         android:layout_width="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/capture_button"
-        android:layout_marginTop="8dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:src="@drawable/ic_directions" />
+        android:layout_marginBottom="8dp"
+        android:src="@drawable/ic_directions"
+        app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <android.support.design.widget.BottomNavigationView
+        android:id="@+id/bottom_navigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:background="@color/colorPrimary"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:menu="@menu/bottom_navigation_menu" />
+        <!--app:itemIconTint="@color/white"
+        app:itemTextColor="@color/white"-->
 
 </android.support.constraint.ConstraintLayout>
