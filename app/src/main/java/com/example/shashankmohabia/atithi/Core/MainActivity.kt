@@ -2,6 +2,7 @@ package com.example.shashankmohabia.atithi.Core
 
 import android.content.Intent
 import android.graphics.Bitmap
+import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
 import android.support.design.widget.NavigationView
@@ -15,6 +16,7 @@ import com.example.shashankmohabia.atithi.Core.Community.CommunityFragment
 import com.example.shashankmohabia.atithi.Core.Explore.ExploreFragment
 import com.example.shashankmohabia.atithi.Core.Explore.dummy.DummyContent
 import com.example.shashankmohabia.atithi.Core.Home.LandingFragment
+import com.example.shashankmohabia.atithi.Core.Home.PlaceInformationFragment
 import com.example.shashankmohabia.atithi.R
 import com.example.shashankmohabia.atithi.Utils.Extensions.startFragmentTransaction
 import kotlinx.android.synthetic.main.landing_fragment.*
@@ -27,7 +29,8 @@ class MainActivity :
         AppCompatActivity(),
         NavigationView.OnNavigationItemSelectedListener,
         ExploreFragment.OnListFragmentInteractionListener,
-        CommunityFragment.OnListFragmentInteractionListener {
+        CommunityFragment.OnListFragmentInteractionListener,
+        PlaceInformationFragment.OnFragmentInteractionListener{
 
     private val REQUEST_IMAGE_CAPTURE = 1
 
@@ -56,14 +59,6 @@ class MainActivity :
         }
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
-           /* val imageBitmap = data!!.extras.get("data") as Bitmap
-            cameraResult.setImageBitmap(imageBitmap)*/
-            startFragmentTransaction(ExploreFragment(), true)
-        }
-    }
-
     private fun setCaptureButton() {
         capture_button.setOnClickListener {
             Intent(MediaStore.ACTION_IMAGE_CAPTURE).also { takePictureIntent ->
@@ -73,6 +68,19 @@ class MainActivity :
             }
         }
     }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
+            /* val imageBitmap = data!!.extras.get("data") as Bitmap
+             cameraResult.setImageBitmap(imageBitmap)*/
+            startFragmentTransaction(PlaceInformationFragment(), true)
+        }
+    }
+
+    override fun onFragmentInteraction(uri: Uri) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
 
     override fun onListFragmentInteraction(item: DummyContent.DummyItem?) {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
