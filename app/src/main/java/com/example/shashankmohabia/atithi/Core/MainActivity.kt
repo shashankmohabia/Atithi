@@ -1,6 +1,7 @@
 package com.example.shashankmohabia.atithi.Core
 
 import android.content.Intent
+import android.graphics.Bitmap
 import android.os.Bundle
 import android.provider.MediaStore
 import android.support.design.widget.NavigationView
@@ -16,9 +17,11 @@ import com.example.shashankmohabia.atithi.Core.Explore.dummy.DummyContent
 import com.example.shashankmohabia.atithi.Core.Home.LandingFragment
 import com.example.shashankmohabia.atithi.R
 import com.example.shashankmohabia.atithi.Utils.Extensions.startFragmentTransaction
+import kotlinx.android.synthetic.main.landing_fragment.*
 import kotlinx.android.synthetic.main.main_activity.*
 import kotlinx.android.synthetic.main.main_app_bar.*
 import kotlinx.android.synthetic.main.main_content.*
+import javax.xml.transform.Result
 
 class MainActivity :
         AppCompatActivity(),
@@ -50,6 +53,13 @@ class MainActivity :
         navigation_button.setOnClickListener { view ->
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                     .setAction("Action", null).show()
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
+            val imageBitmap = data!!.extras.get("data") as Bitmap
+            cameraResult.setImageBitmap(imageBitmap)
         }
     }
 
