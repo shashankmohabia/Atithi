@@ -2,6 +2,7 @@ package com.example.shashankmohabia.atithi.Core
 
 import android.os.Bundle
 import android.support.design.widget.NavigationView
+import android.support.design.widget.Snackbar
 import android.support.v4.view.GravityCompat
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
@@ -28,10 +29,7 @@ class MainActivity :
         setContentView(R.layout.main_activity)
         setSupportActionBar(toolbar)
 
-        /*fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                    .setAction("Action", null).show()
-        }*/
+        setCaptureButton()
 
         val toggle = ActionBarDrawerToggle(
                 this, drawer_layout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
@@ -41,6 +39,13 @@ class MainActivity :
         nav_view.setNavigationItemSelectedListener(this)
 
         setBottomNavBar()
+    }
+
+    private fun setCaptureButton() {
+        capture_button.setOnClickListener { view ->
+            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                    .setAction("Action", null).show()
+        }
     }
 
     override fun onListFragmentInteraction(item: DummyContent.DummyItem?) {
