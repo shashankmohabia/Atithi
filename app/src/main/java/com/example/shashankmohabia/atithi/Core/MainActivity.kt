@@ -58,8 +58,9 @@ class MainActivity :
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
-            val imageBitmap = data!!.extras.get("data") as Bitmap
-            cameraResult.setImageBitmap(imageBitmap)
+           /* val imageBitmap = data!!.extras.get("data") as Bitmap
+            cameraResult.setImageBitmap(imageBitmap)*/
+            startFragmentTransaction(ExploreFragment(), true)
         }
     }
 
@@ -155,6 +156,4 @@ class MainActivity :
         drawer_layout.closeDrawer(GravityCompat.START)
         return true
     }
-
-
 }
