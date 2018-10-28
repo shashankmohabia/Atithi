@@ -1,7 +1,6 @@
 package com.example.shashankmohabia.atithi.Core
 
 import android.content.Intent
-import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
@@ -19,11 +18,9 @@ import com.example.shashankmohabia.atithi.Core.Home.LandingFragment
 import com.example.shashankmohabia.atithi.Core.Home.PlaceInformationFragment
 import com.example.shashankmohabia.atithi.R
 import com.example.shashankmohabia.atithi.Utils.Extensions.startFragmentTransaction
-import kotlinx.android.synthetic.main.landing_fragment.*
 import kotlinx.android.synthetic.main.main_activity.*
 import kotlinx.android.synthetic.main.main_app_bar.*
 import kotlinx.android.synthetic.main.main_content.*
-import javax.xml.transform.Result
 
 class MainActivity :
         AppCompatActivity(),
