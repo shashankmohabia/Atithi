@@ -96,7 +96,7 @@ class MainActivity :
         bottom_navigation.setOnNavigationItemSelectedListener {
             when (it.itemId) {
                 R.id.home -> {
-                    startFragmentTransaction(LandingFragment())
+                    startFragmentTransaction(PlaceInformationFragment())
                     return@setOnNavigationItemSelectedListener true
                 }
                 R.id.explore -> {
