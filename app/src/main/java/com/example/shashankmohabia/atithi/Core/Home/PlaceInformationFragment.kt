@@ -41,7 +41,7 @@ class PlaceInformationFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_place_information, container, false)
+        return inflater.inflate(R.layout.place_information_fragment, container, false)
     }
 
     // TODO: Rename method, update argument and hook method into UI event
