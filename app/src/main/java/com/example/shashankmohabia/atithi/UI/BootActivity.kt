@@ -1,6 +1,5 @@
 package com.example.shashankmohabia.atithi.UI
 
-import android.app.ActivityOptions
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
@@ -12,7 +11,7 @@ class BootActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_boot)
+        setContentView(R.layout.boot_activity)
 
         val intent = Intent(this, MainActivity::class.java)
         Thread {

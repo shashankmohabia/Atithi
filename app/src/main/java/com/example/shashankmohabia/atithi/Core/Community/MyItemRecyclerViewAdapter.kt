@@ -11,7 +11,7 @@ import com.example.shashankmohabia.atithi.R
 import com.example.shashankmohabia.atithi.Core.Community.CommunityFragment.OnListFragmentInteractionListener
 import com.example.shashankmohabia.atithi.Core.Community.dummy.DummyContent.DummyItem
 
-import kotlinx.android.synthetic.main.fragment_item2.view.*
+import kotlinx.android.synthetic.main.community_fragment_item.view.*
 
 /**
  * [RecyclerView.Adapter] that can display a [DummyItem] and makes a call to the
@@ -36,7 +36,7 @@ class MyItemRecyclerViewAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
-                .inflate(R.layout.fragment_item2, parent, false)
+                .inflate(R.layout.community_fragment_item, parent, false)
         return ViewHolder(view)
     }
 

@@ -7,18 +7,25 @@ import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
+import com.example.shashankmohabia.atithi.Core.Community.CommunityFragment
+import com.example.shashankmohabia.atithi.Core.Explore.ExploreFragment
+import com.example.shashankmohabia.atithi.Core.Explore.dummy.DummyContent
 import com.example.shashankmohabia.atithi.Core.Home.LandingFragment
 import com.example.shashankmohabia.atithi.R
 import com.example.shashankmohabia.atithi.Utils.Extensions.startFragmentTransaction
-import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.app_bar_main.*
-import kotlinx.android.synthetic.main.content_main.*
+import kotlinx.android.synthetic.main.main_activity.*
+import kotlinx.android.synthetic.main.main_app_bar.*
+import kotlinx.android.synthetic.main.main_content.*
 
-class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
+class MainActivity :
+        AppCompatActivity(),
+        NavigationView.OnNavigationItemSelectedListener,
+        ExploreFragment.OnListFragmentInteractionListener,
+        CommunityFragment.OnListFragmentInteractionListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.main_activity)
         setSupportActionBar(toolbar)
 
         /*fab.setOnClickListener { view ->
@@ -36,25 +43,33 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         setBottomNavBar()
     }
 
+    override fun onListFragmentInteraction(item: DummyContent.DummyItem?) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun onListFragmentInteraction(item: com.example.shashankmohabia.atithi.Core.Community.dummy.DummyContent.DummyItem?) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
     private fun setBottomNavBar() {
         bottom_navigation.selectedItemId = R.id.home
         startFragmentTransaction(LandingFragment())
         bottom_navigation.setOnNavigationItemSelectedListener {
-            when(it.itemId){
+            when (it.itemId) {
                 R.id.home -> {
                     startFragmentTransaction(LandingFragment())
                     return@setOnNavigationItemSelectedListener true
                 }
                 R.id.explore -> {
-                    startFragmentTransaction(LandingFragment())
+                    startFragmentTransaction(ExploreFragment())
                     return@setOnNavigationItemSelectedListener true
                 }
                 R.id.community -> {
-                    startFragmentTransaction(LandingFragment())
+                    startFragmentTransaction(CommunityFragment())
                     return@setOnNavigationItemSelectedListener true
                 }
                 else -> {
-                    return@setOnNavigationItemSelectedListener  false
+                    return@setOnNavigationItemSelectedListener false
                 }
             }
         }
