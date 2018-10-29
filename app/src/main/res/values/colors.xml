@@ -5,6 +5,8 @@
     <color name="colorAccent">#009587</color>
     <color name="white">#ffffff</color>
 
+    <color name="colorBackground">#FAFAFA</color>
+
     <color name="colorPrimaryTextDefaultMaterialLight">#DE000000</color>
     <color name="colorSecondaryTextDefaultMaterialLight">#8A000000</color>
 
