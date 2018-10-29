@@ -6,7 +6,6 @@
     android:name="com.example.shashankmohabia.atithi.Core.Community.CommunityFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginLeft="16dp"
-    android:layout_marginRight="16dp"
+    android:layout_marginBottom="32dp"
     tools:context=".Core.Community.CommunityFragment"
     tools:listitem="@layout/community_fragment_item" />
