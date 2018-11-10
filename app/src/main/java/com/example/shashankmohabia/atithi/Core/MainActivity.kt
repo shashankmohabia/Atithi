@@ -1,6 +1,7 @@
 package com.example.shashankmohabia.atithi.Core
 
 import android.content.Intent
+import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
@@ -18,6 +19,7 @@ import com.example.shashankmohabia.atithi.Core.Home.LandingFragment
 import com.example.shashankmohabia.atithi.Core.Home.PlaceInformationFragment
 import com.example.shashankmohabia.atithi.R
 import com.example.shashankmohabia.atithi.Utils.Extensions.getCameraIntent
+import com.example.shashankmohabia.atithi.Utils.Extensions.searchGoogleImages
 import com.example.shashankmohabia.atithi.Utils.Extensions.startFragmentTransaction
 import kotlinx.android.synthetic.main.main_activity.*
 import kotlinx.android.synthetic.main.main_app_bar.*
@@ -28,7 +30,7 @@ class MainActivity :
         NavigationView.OnNavigationItemSelectedListener,
         ExploreFragment.OnListFragmentInteractionListener,
         CommunityFragment.OnListFragmentInteractionListener,
-        PlaceInformationFragment.OnFragmentInteractionListener{
+        PlaceInformationFragment.OnFragmentInteractionListener {
 
     private val SEARCH_OBJECT_REQUEST_CODE = 1
     private val SEARCH_PLACE_REQUEST_CODE = 2
@@ -74,9 +76,10 @@ class MainActivity :
             startFragmentTransaction(PlaceInformationFragment(), true)
         }
         if (requestCode == SEARCH_OBJECT_REQUEST_CODE && resultCode == RESULT_OK) {
-            /* val imageBitmap = data!!.extras.get("data") as Bitmap
-             cameraResult.setImageBitmap(imageBitmap)*/
-            startFragmentTransaction(CommunityFragment(), true)
+            val TestString = "Shashank Mohabia"
+            val url = "https://www.google.com/search?hl=en&site=imghp&tbm=isch&source=hp&q=" + TestString
+            searchGoogleImages(url)
+            //startFragmentTransaction(CommunityFragment(), true)
         }
     }
 
@@ -168,4 +171,5 @@ class MainActivity :
         return true
     }
 }
+
 
