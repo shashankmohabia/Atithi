@@ -17,6 +17,7 @@ import com.example.shashankmohabia.atithi.Core.Explore.dummy.DummyContent
 import com.example.shashankmohabia.atithi.Core.Home.LandingFragment
 import com.example.shashankmohabia.atithi.Core.Home.PlaceInformationFragment
 import com.example.shashankmohabia.atithi.R
+import com.example.shashankmohabia.atithi.Utils.Extensions.getCameraIntent
 import com.example.shashankmohabia.atithi.Utils.Extensions.startFragmentTransaction
 import kotlinx.android.synthetic.main.main_activity.*
 import kotlinx.android.synthetic.main.main_app_bar.*
@@ -29,15 +30,16 @@ class MainActivity :
         CommunityFragment.OnListFragmentInteractionListener,
         PlaceInformationFragment.OnFragmentInteractionListener{
 
-    private val REQUEST_IMAGE_CAPTURE = 1
+    private val SEARCH_OBJECT_REQUEST_CODE = 1
+    private val SEARCH_PLACE_REQUEST_CODE = 2
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.main_activity)
         setSupportActionBar(toolbar)
 
-        setCaptureButton()
-        setNavigationButton()
+        setFloatingButtons()
 
         val toggle = ActionBarDrawerToggle(
                 this, drawer_layout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
@@ -49,28 +51,32 @@ class MainActivity :
         setBottomNavBar()
     }
 
-    private fun setNavigationButton() {
+    private fun setFloatingButtons() {
+
+        capture_button.setOnClickListener {
+            getCameraIntent(SEARCH_PLACE_REQUEST_CODE)
+        }
+
         navigation_button.setOnClickListener { view ->
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                     .setAction("Action", null).show()
         }
-    }
 
-    private fun setCaptureButton() {
-        capture_button.setOnClickListener {
-            Intent(MediaStore.ACTION_IMAGE_CAPTURE).also { takePictureIntent ->
-                takePictureIntent.resolveActivity(packageManager)?.also {
-                    startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE)
-                }
-            }
+        search_object_button.setOnClickListener {
+            getCameraIntent(SEARCH_OBJECT_REQUEST_CODE)
         }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
+        if (requestCode == SEARCH_PLACE_REQUEST_CODE && resultCode == RESULT_OK) {
             /* val imageBitmap = data!!.extras.get("data") as Bitmap
              cameraResult.setImageBitmap(imageBitmap)*/
             startFragmentTransaction(PlaceInformationFragment(), true)
+        }
+        if (requestCode == SEARCH_OBJECT_REQUEST_CODE && resultCode == RESULT_OK) {
+            /* val imageBitmap = data!!.extras.get("data") as Bitmap
+             cameraResult.setImageBitmap(imageBitmap)*/
+            startFragmentTransaction(CommunityFragment(), true)
         }
     }
 
@@ -162,3 +168,4 @@ class MainActivity :
         return true
     }
 }
+
