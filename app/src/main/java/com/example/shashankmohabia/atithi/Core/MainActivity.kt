@@ -88,8 +88,8 @@ class MainActivity :
     }
 
     private fun setBottomNavBar() {
-        bottom_navigation.selectedItemId = R.id.home
         startFragmentTransaction(LandingFragment())
+        bottom_navigation.selectedItemId = R.id.home
         bottom_navigation.setOnNavigationItemSelectedListener {
             when (it.itemId) {
                 R.id.home -> {

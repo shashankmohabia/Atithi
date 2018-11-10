@@ -13,7 +13,7 @@
         android:id="@+id/mainFrame"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"
+        app:layout_constraintBottom_toTopOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <android.support.design.widget.FloatingActionButton
@@ -35,6 +35,17 @@
         android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
         android:src="@drawable/ic_directions"
+        app:layout_constraintBottom_toTopOf="@+id/search_object_button"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/search_object_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="8dp"
+        android:src="@drawable/ic_search"
         app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"
         app:layout_constraintEnd_toEndOf="parent" />
 

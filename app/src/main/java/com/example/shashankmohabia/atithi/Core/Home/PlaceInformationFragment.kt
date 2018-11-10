@@ -9,6 +9,9 @@ import android.view.View
 import android.view.ViewGroup
 
 import com.example.shashankmohabia.atithi.R
+import kotlinx.android.synthetic.main.place_information_fragment.*
+import kotlinx.coroutines.experimental.async
+import java.net.URL
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -36,6 +39,12 @@ class PlaceInformationFragment : Fragment() {
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
         }
+        async {
+            val jsondata = URL("https://en.wikipedia.org/w/api.php?action=query&titles=Mehrangarh&prop=extracts&format=json&redirects=true").readText()
+            placeDescription.text = jsondata
+            //https://en.wikipedia.org/w/api.php?action=query&titles=Mehrangarh&prop=revisions&rvprop=content&format=json
+        }
+
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
