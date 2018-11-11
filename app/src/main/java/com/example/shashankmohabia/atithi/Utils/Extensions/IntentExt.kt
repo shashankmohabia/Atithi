@@ -7,6 +7,10 @@ import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
 import com.example.shashankmohabia.atithi.Core.Home.Navigation.NavigationActivity
 import com.example.shashankmohabia.atithi.R
+import android.R.attr.fragment
+import android.os.Bundle
+import android.os.Parcelable
+
 
 fun AppCompatActivity.startFragmentTransaction(fragment: Fragment, stateLossAllowed: Boolean = false, data: Any? = null) {
     if (!stateLossAllowed) {

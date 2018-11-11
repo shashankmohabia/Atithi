@@ -25,6 +25,7 @@ import com.example.shashankmohabia.atithi.Utils.Extensions.startNavigationIntent
 import kotlinx.android.synthetic.main.main_activity.*
 import kotlinx.android.synthetic.main.main_app_bar.*
 import kotlinx.android.synthetic.main.main_content.*
+import kotlinx.android.synthetic.main.place_information_fragment.*
 
 class MainActivity :
         AppCompatActivity(),
@@ -35,6 +36,7 @@ class MainActivity :
 
     private val SEARCH_OBJECT_REQUEST_CODE = 1
     private val SEARCH_PLACE_REQUEST_CODE = 2
+    public var currentPlace: Place? = null
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -76,6 +78,7 @@ class MainActivity :
             val place = "Mehrangarh_Fort-Jodhpur"
             getPlaceData(place, object : ServerInteractionListener {
                 override fun onReceivePlaceData(data: Place) {
+                    currentPlace = data
                     startFragmentTransaction(PlaceInformationFragment(), true, data)
                 }
             })
@@ -87,6 +90,13 @@ class MainActivity :
             searchGoogleImages(url)
             //startFragmentTransaction(CommunityFragment(), true)
         }
+    }
+
+    override fun initializePlaceInformationData() {
+        placeName.text = currentPlace!!.name
+        placeAddress.text = "${currentPlace!!.city}, ${currentPlace!!.state}, ${currentPlace!!.country}"
+        placeTiming.text = "${currentPlace!!.opening_time} - ${currentPlace!!.closing_time}"
+        placeDescription.text = currentPlace!!.description
     }
 
     override fun onFragmentInteraction(uri: Uri) {
