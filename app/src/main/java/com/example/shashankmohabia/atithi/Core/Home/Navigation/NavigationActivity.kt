@@ -7,6 +7,7 @@ import android.view.View
 import android.view.Window
 import android.view.WindowManager
 import com.example.shashankmohabia.atithi.R
+import com.example.shashankmohabia.atithi.Utils.Extensions.removeStatusBar
 import kotlinx.android.synthetic.main.activity_navigation.*
 
 /**
@@ -16,7 +17,12 @@ import kotlinx.android.synthetic.main.activity_navigation.*
 class NavigationActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        removeStatusBar()
+
         setContentView(R.layout.activity_navigation)
 
     }
 }
+
+
