@@ -1,4 +1,4 @@
-package com.example.shashankmohabia.atithi.Servers
+package com.example.shashankmohabia.atithi.Data.Model_Classes
 
 data class Place(
         val name: String,

@@ -14,6 +14,7 @@ import com.example.shashankmohabia.atithi.Core.Explore.ExploreFragment
 import com.example.shashankmohabia.atithi.Core.Explore.dummy.DummyContent
 import com.example.shashankmohabia.atithi.Core.Home.LandingFragment
 import com.example.shashankmohabia.atithi.Core.Home.PlaceInformationFragment
+import com.example.shashankmohabia.atithi.Data.ServerClasses.getPlaceData
 import com.example.shashankmohabia.atithi.R
 import com.example.shashankmohabia.atithi.Utils.Extensions.getCameraIntent
 import com.example.shashankmohabia.atithi.Utils.Extensions.searchGoogleImages
@@ -70,6 +71,8 @@ class MainActivity :
         if (requestCode == SEARCH_PLACE_REQUEST_CODE && resultCode == RESULT_OK) {
             /* val imageBitmap = data!!.extras.get("data") as Bitmap
              cameraResult.setImageBitmap(imageBitmap)*/
+            val place = "Mehrangarh_Fort-Jodhpur"
+            getPlaceData(place)
             startFragmentTransaction(PlaceInformationFragment(), true)
         }
         if (requestCode == SEARCH_OBJECT_REQUEST_CODE && resultCode == RESULT_OK) {
@@ -168,6 +171,7 @@ class MainActivity :
         return true
     }
 }
+
 
 
 
