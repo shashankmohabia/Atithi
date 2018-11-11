@@ -40,7 +40,7 @@ class MainActivity :
     private val SEARCH_OBJECT_REQUEST_CODE = 1
     private val SEARCH_PLACE_REQUEST_CODE = 2
     private var currentPlace: Place? = null
-    private lateinit var currentSubPlaceList: MutableList<SubPlace>
+    lateinit var currentSubPlaceList: MutableList<SubPlace>
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
