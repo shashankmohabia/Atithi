@@ -76,7 +76,7 @@ class MainActivity :
             val place = "Mehrangarh_Fort-Jodhpur"
             getPlaceData(place, object : ServerInteractionListener {
                 override fun onReceivePlaceData(data: Place) {
-                    startFragmentTransaction(PlaceInformationFragment(), true)
+                    startFragmentTransaction(PlaceInformationFragment(), true, data)
                 }
             })
         }
