@@ -15,6 +15,7 @@ import com.example.shashankmohabia.atithi.Core.Explore.dummy.DummyContent
 import com.example.shashankmohabia.atithi.Core.Home.LandingFragment
 import com.example.shashankmohabia.atithi.Core.Home.PlaceInformationFragment
 import com.example.shashankmohabia.atithi.Data.Model_Classes.Place
+import com.example.shashankmohabia.atithi.Data.ServerClasses.ServerInteractionListener
 import com.example.shashankmohabia.atithi.Data.ServerClasses.getPlaceData
 import com.example.shashankmohabia.atithi.R
 import com.example.shashankmohabia.atithi.Utils.Extensions.getCameraIntent
@@ -73,9 +74,13 @@ class MainActivity :
             /* val imageBitmap = data!!.extras.get("data") as Bitmap
              cameraResult.setImageBitmap(imageBitmap)*/
             val place = "Mehrangarh_Fort-Jodhpur"
-            getPlaceData(place)
-            startFragmentTransaction(PlaceInformationFragment(), true)
+            getPlaceData(place, object : ServerInteractionListener {
+                override fun onReceivePlaceData(data: Place) {
+                    startFragmentTransaction(PlaceInformationFragment(), true)
+                }
+            })
         }
+
         if (requestCode == SEARCH_OBJECT_REQUEST_CODE && resultCode == RESULT_OK) {
             val TestString = "Shashank Mohabia"
             val url = "https://www.google.com/search?hl=en&site=imghp&tbm=isch&source=hp&q=" + TestString

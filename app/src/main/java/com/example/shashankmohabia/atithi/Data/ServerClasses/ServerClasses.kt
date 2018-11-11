@@ -7,11 +7,11 @@ import com.google.firebase.firestore.FirebaseFirestore
 import android.util.Log
 
 
-fun AppCompatActivity.getPlaceData(place: String) {
+fun AppCompatActivity.getPlaceData(place: String, callback: ServerInteractionListener) {
     val db = FirebaseFirestore.getInstance()
     val docRef = db.collection("Places").document(place)
     docRef.get().addOnSuccessListener { documentSnapshot ->
-        // val place_data= documentSnapshot.toObject<Place>(Place::class.java)
+        //val place_data= documentSnapshot.toObject<Place>(Place::class.java)
 
         val place_data = Place(
                 documentSnapshot.data!!["name"].toString(),
@@ -23,7 +23,10 @@ fun AppCompatActivity.getPlaceData(place: String) {
                 documentSnapshot.data!!["opening_time"].toString(),
                 documentSnapshot.data!!["closing_time"].toString()
         )
-        Log.d("satya", documentSnapshot.data.toString())
+
+        Log.d("eventlog", documentSnapshot.data.toString())
+
+        callback.onReceivePlaceData(place_data)
     }
 
     docRef.collection("SubPlaces")
@@ -31,11 +34,16 @@ fun AppCompatActivity.getPlaceData(place: String) {
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     for (document in task.result!!) {
-                        Log.d("Satya", document.id + " => " + document.data)
+                        Log.d("eventlog", document.id + " => " + document.data)
                     }
                 } else {
                     Log.d(TAG, "Error getting documents: ", task.exception)
                 }
             }
 
+}
+
+interface ServerInteractionListener{
+    fun onReceivePlaceData(data:Place)
+    //fun onReceiveSubPlaceData(data:Place)
 }
