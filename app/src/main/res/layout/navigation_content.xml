@@ -33,7 +33,7 @@
         android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
         android:backgroundTint="@color/colorSecondaryTextDefaultMaterialLight"
-        android:src="@drawable/ic_search"
+        android:src="@drawable/ic_directions"
         app:layout_constraintBottom_toBottomOf="@+id/navigation_picture"
         app:layout_constraintEnd_toEndOf="parent" />
 
