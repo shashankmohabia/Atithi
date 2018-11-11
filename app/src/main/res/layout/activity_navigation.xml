@@ -21,5 +21,5 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <include layout="@layout/navigation_content" />
+     <include layout="@layout/navigation_content" />
 </android.support.design.widget.CoordinatorLayout>
