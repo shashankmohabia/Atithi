@@ -7,14 +7,17 @@ import android.support.design.widget.NavigationView
 import android.support.v4.view.GravityCompat
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import com.bumptech.glide.Glide
 import com.example.shashankmohabia.atithi.Core.Community.CommunityFragment
 import com.example.shashankmohabia.atithi.Core.Explore.ExploreFragment
 import com.example.shashankmohabia.atithi.Core.Explore.dummy.DummyContent
 import com.example.shashankmohabia.atithi.Core.Home.LandingFragment
 import com.example.shashankmohabia.atithi.Core.Home.PlaceInformationFragment
 import com.example.shashankmohabia.atithi.Data.Model_Classes.Place
+import com.example.shashankmohabia.atithi.Data.Model_Classes.SubPlace
 import com.example.shashankmohabia.atithi.Data.ServerClasses.ServerInteractionListener
 import com.example.shashankmohabia.atithi.Data.ServerClasses.getPlaceData
 import com.example.shashankmohabia.atithi.R
@@ -37,6 +40,7 @@ class MainActivity :
     private val SEARCH_OBJECT_REQUEST_CODE = 1
     private val SEARCH_PLACE_REQUEST_CODE = 2
     private var currentPlace: Place? = null
+    private lateinit var currentSubPlaceList: MutableList<SubPlace>
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -77,6 +81,11 @@ class MainActivity :
              cameraResult.setImageBitmap(imageBitmap)*/
             val place = "Mehrangarh_Fort-Jodhpur"
             getPlaceData(place, object : ServerInteractionListener {
+                override fun onReceiveSubPlaceData(data: MutableList<SubPlace>) {
+                    currentSubPlaceList = data
+                    Log.d("eventLog", currentSubPlaceList.size.toString())
+                }
+
                 override fun onReceivePlaceData(data: Place) {
                     currentPlace = data
                     startFragmentTransaction(PlaceInformationFragment(), true, data)
@@ -97,6 +106,7 @@ class MainActivity :
         placeAddress.text = "${currentPlace!!.city}, ${currentPlace!!.state}, ${currentPlace!!.country}"
         placeTiming.text = "${currentPlace!!.opening_time} - ${currentPlace!!.closing_time}"
         placeDescription.text = currentPlace!!.description
+        //Glide.with(this).load(currentPlace!!.image_link).into(placeImage)
     }
 
 

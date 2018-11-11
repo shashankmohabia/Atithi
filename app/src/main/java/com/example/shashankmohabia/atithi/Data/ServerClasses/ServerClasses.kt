@@ -5,6 +5,8 @@ import android.support.v7.app.AppCompatActivity
 import com.example.shashankmohabia.atithi.Data.Model_Classes.Place
 import com.google.firebase.firestore.FirebaseFirestore
 import android.util.Log
+import com.example.shashankmohabia.atithi.Data.Model_Classes.SubPlace
+import org.jetbrains.anko.doAsync
 
 
 fun AppCompatActivity.getPlaceData(place: String, callback: ServerInteractionListener) {
@@ -24,26 +26,35 @@ fun AppCompatActivity.getPlaceData(place: String, callback: ServerInteractionLis
                 documentSnapshot.data!!["closing_time"].toString()
         )
 
-        Log.d("eventlog", documentSnapshot.data.toString())
+        //Log.d("eventlog", documentSnapshot.data.toString())
 
         callback.onReceivePlaceData(place_data)
     }
-
+     val subPlacesList: MutableList<SubPlace> = mutableListOf()
     docRef.collection("SubPlaces")
             .get()
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     for (document in task.result!!) {
+                        val subPlace = SubPlace(
+                                document.data["name"].toString(),
+                                document.data["description"].toString(),
+                                document.data["image_link"].toString(),
+                                document.data["direction_instruction"].toString()
+                        )
+                        subPlacesList.add(subPlace)
                         Log.d("eventlog", document.id + " => " + document.data)
                     }
                 } else {
                     Log.d(TAG, "Error getting documents: ", task.exception)
                 }
+                callback.onReceiveSubPlaceData(subPlacesList)
+
             }
 
 }
 
 interface ServerInteractionListener{
     fun onReceivePlaceData(data:Place)
-    //fun onReceiveSubPlaceData(data:Place)
+    fun onReceiveSubPlaceData(data:MutableList<SubPlace>)
 }
