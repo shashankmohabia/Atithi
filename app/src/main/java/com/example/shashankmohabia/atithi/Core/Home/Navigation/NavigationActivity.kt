@@ -16,10 +16,10 @@ class NavigationActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        //removeStatusBar()
+        removeStatusBar()
 
-        setSupportActionBar(navigation_toolbar)
         setContentView(R.layout.activity_navigation)
+        setSupportActionBar(navigation_toolbar)
 
     }
 
