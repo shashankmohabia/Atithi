@@ -6,6 +6,6 @@ import org.jetbrains.anko.alert
 fun AppCompatActivity.getDialogueBox(t: String, message: String) {
     this.alert(message) {
          title = t
-        positiveButton("dismiss"){}
+        positiveButton("OK"){}
     }.show()
 }

@@ -48,6 +48,9 @@ dependencies {
     //Glide Library
     implementation 'com.github.bumptech.glide:glide:4.8.0'
 
+    //double-tap listener library
+    implementation 'com.github.pedromassango:doubleClick:2.0'
+
     //Firebase Libraries
     implementation 'com.google.firebase:firebase-core:16.0.5'
     implementation 'com.google.firebase:firebase-storage:16.0.5'

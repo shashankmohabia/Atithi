@@ -26,8 +26,6 @@ class NavigationActivity : AppCompatActivity() {
 
         removeStatusBar()
 
-
-
         setContentView(R.layout.activity_navigation)
         setSupportActionBar(navigation_toolbar)
 
