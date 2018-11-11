@@ -21,6 +21,7 @@ import com.example.shashankmohabia.atithi.R
 import com.example.shashankmohabia.atithi.Utils.Extensions.getCameraIntent
 import com.example.shashankmohabia.atithi.Utils.Extensions.searchGoogleImages
 import com.example.shashankmohabia.atithi.Utils.Extensions.startFragmentTransaction
+import com.example.shashankmohabia.atithi.Utils.Extensions.startNavigationIntent
 import kotlinx.android.synthetic.main.main_activity.*
 import kotlinx.android.synthetic.main.main_app_bar.*
 import kotlinx.android.synthetic.main.main_content.*
@@ -60,8 +61,7 @@ class MainActivity :
         }
 
         navigation_button.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                    .setAction("Action", null).show()
+            startNavigationIntent()
         }
 
         search_object_button.setOnClickListener {
@@ -171,5 +171,7 @@ class MainActivity :
         return true
     }
 }
+
+
 
 

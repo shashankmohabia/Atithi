@@ -5,6 +5,7 @@ import android.net.Uri
 import android.provider.MediaStore
 import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
+import com.example.shashankmohabia.atithi.Core.Home.Navigation.NavigationActivity
 import com.example.shashankmohabia.atithi.R
 
 fun AppCompatActivity.startFragmentTransaction(fragment: Fragment, stateLossAllowed: Boolean = false) {
@@ -29,4 +30,8 @@ fun AppCompatActivity.getCameraIntent(REQUEST_CODE: Int) {
 
 fun AppCompatActivity.searchGoogleImages(url: String) {
     startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(url)))
+}
+
+fun AppCompatActivity.startNavigationIntent() {
+    startActivity(Intent(this, NavigationActivity::class.java))
 }
