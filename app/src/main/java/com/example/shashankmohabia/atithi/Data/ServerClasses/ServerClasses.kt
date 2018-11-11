@@ -4,12 +4,7 @@ import android.content.ContentValues.TAG
 import android.support.v7.app.AppCompatActivity
 import com.example.shashankmohabia.atithi.Data.Model_Classes.Place
 import com.google.firebase.firestore.FirebaseFirestore
-import org.jetbrains.anko.toast
-import com.google.firebase.firestore.DocumentSnapshot
-import com.google.android.gms.tasks.Task
-import android.support.annotation.NonNull
 import android.util.Log
-import com.google.android.gms.tasks.OnCompleteListener
 
 
 fun AppCompatActivity.getPlaceData(place: String) {
@@ -28,19 +23,19 @@ fun AppCompatActivity.getPlaceData(place: String) {
                 documentSnapshot.data!!["opening_time"].toString(),
                 documentSnapshot.data!!["closing_time"].toString()
         )
-        toast(place_data.name)
+        Log.d("satya", documentSnapshot.data.toString())
     }
-    /*
-    docRef.get().addOnCompleteListener { task ->
-        if (task.isSuccessful) {
-            val document = task.result
-            if (document!!.exists()) {
-                Log.d("satya", "DocumentSnapshot data: " + document.data!!["name"]!!)
-            } else {
-                Log.d("satya", "No such document")
+
+    docRef.collection("SubPlaces")
+            .get()
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    for (document in task.result!!) {
+                        Log.d("Satya", document.id + " => " + document.data)
+                    }
+                } else {
+                    Log.d(TAG, "Error getting documents: ", task.exception)
+                }
             }
-        } else {
-            Log.d("satya", "get failed with ", task.exception)
-        }
-    }*/
+
 }
