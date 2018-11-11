@@ -6,7 +6,6 @@ import android.provider.MediaStore
 import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
 import com.example.shashankmohabia.atithi.R
-import org.jetbrains.anko.startActivity
 
 fun AppCompatActivity.startFragmentTransaction(fragment: Fragment, stateLossAllowed: Boolean = false) {
     if (!stateLossAllowed) {
