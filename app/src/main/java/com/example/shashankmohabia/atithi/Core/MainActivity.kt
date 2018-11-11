@@ -36,7 +36,7 @@ class MainActivity :
 
     private val SEARCH_OBJECT_REQUEST_CODE = 1
     private val SEARCH_PLACE_REQUEST_CODE = 2
-    public var currentPlace: Place? = null
+    private var currentPlace: Place? = null
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -97,10 +97,6 @@ class MainActivity :
         placeAddress.text = "${currentPlace!!.city}, ${currentPlace!!.state}, ${currentPlace!!.country}"
         placeTiming.text = "${currentPlace!!.opening_time} - ${currentPlace!!.closing_time}"
         placeDescription.text = currentPlace!!.description
-    }
-
-    override fun onFragmentInteraction(uri: Uri) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
 

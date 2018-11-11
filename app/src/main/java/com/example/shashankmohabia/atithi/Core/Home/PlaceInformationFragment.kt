@@ -64,7 +64,6 @@ class PlaceInformationFragment : Fragment() {
     }
 
     interface OnFragmentInteractionListener {
-        fun onFragmentInteraction(uri: Uri)
         fun initializePlaceInformationData()
     }
 
