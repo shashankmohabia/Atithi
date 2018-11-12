@@ -11,6 +11,7 @@ import com.example.shashankmohabia.atithi.Utils.Extensions.getDialogueBox
 import com.example.shashankmohabia.atithi.Utils.Extensions.removeStatusBar
 import kotlinx.android.synthetic.main.activity_navigation.*
 import kotlinx.android.synthetic.main.navigation_content.*
+import org.jetbrains.anko.toast
 
 
 class NavigationActivity : AppCompatActivity() {
@@ -23,11 +24,24 @@ class NavigationActivity : AppCompatActivity() {
         setContentView(R.layout.activity_navigation)
         setSupportActionBar(navigation_toolbar)
 
-        setOnClickListeners()
+        setFloatingButtons()
+
+        setImageViewClickListener()
 
     }
 
-    private fun setOnClickListeners() {
+    private fun setImageViewClickListener() {
+        if (currentSubPlaceIndex == subPlacesList.size - 1) {
+            toast("This is the end to the tour!")
+        } else {
+            navigation_image.setOnClickListener {
+                navigation_image.setImageResource(R.drawable.old_bagan_myanmar)
+                currentSubPlaceIndex++
+            }
+        }
+    }
+
+    private fun setFloatingButtons() {
 
         navigation_description.setOnClickListener {
             getDialogueBox(subPlacesList[currentSubPlaceIndex].name, subPlacesList[currentSubPlaceIndex].description)
@@ -35,7 +49,7 @@ class NavigationActivity : AppCompatActivity() {
         }
 
         navigation_direction.setOnClickListener {
-            getDialogueBox("Next Spot - ${subPlacesList[currentSubPlaceIndex+1].name}", subPlacesList[currentSubPlaceIndex].direction_instruction)
+            getDialogueBox("Next Spot - ${subPlacesList[currentSubPlaceIndex + 1].name}", subPlacesList[currentSubPlaceIndex].direction_instruction)
         }
     }
 
