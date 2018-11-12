@@ -31,10 +31,10 @@ class NavigationActivity : AppCompatActivity() {
     }
 
     private fun setImageViewClickListener() {
-        if (currentSubPlaceIndex == subPlacesList.size - 1) {
-            toast("This is the end to the tour!")
-        } else {
-            navigation_image.setOnClickListener {
+        navigation_image.setOnClickListener {
+            if (currentSubPlaceIndex == subPlacesList.size - 1) {
+                toast("This is the end to the tour!")
+            } else {
                 navigation_image.setImageResource(R.drawable.old_bagan_myanmar)
                 currentSubPlaceIndex++
             }
@@ -49,7 +49,11 @@ class NavigationActivity : AppCompatActivity() {
         }
 
         navigation_direction.setOnClickListener {
-            getDialogueBox("Next Spot - ${subPlacesList[currentSubPlaceIndex + 1].name}", subPlacesList[currentSubPlaceIndex].direction_instruction)
+            if (currentSubPlaceIndex == subPlacesList.size - 1) {
+                toast("This is the last spot")
+            } else {
+                getDialogueBox("Next Spot - ${subPlacesList[currentSubPlaceIndex + 1].name}", subPlacesList[currentSubPlaceIndex].direction_instruction)
+            }
         }
     }
 
