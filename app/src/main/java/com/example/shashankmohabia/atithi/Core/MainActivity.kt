@@ -76,9 +76,6 @@ class MainActivity :
              cameraResult.setImageBitmap(imageBitmap)*/
             val place = "Mehrangarh_Fort-Jodhpur"
             getPlaceData(place, object : ServerInteractionListener {
-                override fun onReceiveSubPlaceData() {
-                    Log.d("eventLog", subPlacesList.size.toString())
-                }
 
                 override fun onReceivePlaceData() {
                     navigation_button.visibility = View.VISIBLE

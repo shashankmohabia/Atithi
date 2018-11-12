@@ -29,8 +29,6 @@ fun AppCompatActivity.getPlaceData(place: String, callback: ServerInteractionLis
         )
 
         //Log.d("eventlog", documentSnapshot.data.toString())
-
-        callback.onReceivePlaceData()
     }
 
     docRef.collection("SubPlaces")
@@ -51,13 +49,12 @@ fun AppCompatActivity.getPlaceData(place: String, callback: ServerInteractionLis
                     Log.d(TAG, "Error getting documents: ", task.exception)
                 }
                 subPlacesList.reverse()
-                callback.onReceiveSubPlaceData()
+                callback.onReceivePlaceData()
 
             }
 
 }
 
-interface ServerInteractionListener{
+interface ServerInteractionListener {
     fun onReceivePlaceData()
-    fun onReceiveSubPlaceData()
 }
