@@ -15,8 +15,6 @@ import com.example.shashankmohabia.atithi.Core.Explore.ExploreFragment
 import com.example.shashankmohabia.atithi.Core.Explore.dummy.DummyContent
 import com.example.shashankmohabia.atithi.Core.Home.LandingFragment
 import com.example.shashankmohabia.atithi.Core.Home.PlaceInformationFragment
-import com.example.shashankmohabia.atithi.Data.Model_Classes.Place
-import com.example.shashankmohabia.atithi.Data.Model_Classes.Place.Companion.currentPlace
 import com.example.shashankmohabia.atithi.Data.Model_Classes.SubPlace.Companion.subPlacesList
 import com.example.shashankmohabia.atithi.Data.ServerClasses.ServerInteractionListener
 import com.example.shashankmohabia.atithi.Data.ServerClasses.getPlaceData

@@ -1,5 +1,6 @@
 package com.example.shashankmohabia.atithi.Core.Home.Navigation
 
+import android.app.usage.UsageEvents.Event.NONE
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
@@ -62,8 +63,9 @@ class NavigationActivity : AppCompatActivity() {
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        menuInflater.inflate(R.menu.main, menu)
+        for ((index) in subPlacesList.withIndex()) {
+            menu.add(0, index, NONE, subPlacesList[index].name)
+        }
         return true
     }
 
