@@ -4,6 +4,8 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import com.example.shashankmohabia.atithi.Data.Model_Classes.SubPlace.Companion.currentSubPlaceIndex
+import com.example.shashankmohabia.atithi.Data.Model_Classes.SubPlace.Companion.subPlacesList
 import com.example.shashankmohabia.atithi.R
 import com.example.shashankmohabia.atithi.Utils.Extensions.getDialogueBox
 import com.example.shashankmohabia.atithi.Utils.Extensions.removeStatusBar
@@ -28,11 +30,12 @@ class NavigationActivity : AppCompatActivity() {
     private fun setOnClickListeners() {
 
         navigation_description.setOnClickListener {
-            getDialogueBox("Main Gate", "nvkjfdbvfb;hvz;hrv;oirhfvofbfvzbvbvzrbzv;.bv.ugrbv.rvihbv.ubf.kzjlurezliurebivrb")
+            getDialogueBox(subPlacesList[currentSubPlaceIndex].name, subPlacesList[currentSubPlaceIndex].description)
+
         }
 
         navigation_direction.setOnClickListener {
-            getDialogueBox("Next Spot - Coffee House", "Left after 200 m")
+            getDialogueBox("Next Spot - ${subPlacesList[currentSubPlaceIndex+1].name}", subPlacesList[currentSubPlaceIndex].direction_instruction)
         }
     }
 
