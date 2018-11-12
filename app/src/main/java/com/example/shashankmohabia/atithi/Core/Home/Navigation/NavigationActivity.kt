@@ -22,6 +22,9 @@ class NavigationActivity : AppCompatActivity() {
         removeStatusBar()
 
         setContentView(R.layout.navigation_main)
+
+        title = subPlacesList[currentSubPlaceIndex].name
+
         setSupportActionBar(navigation_toolbar)
 
         setFloatingButtons()
@@ -37,6 +40,7 @@ class NavigationActivity : AppCompatActivity() {
             } else {
                 navigation_image.setImageResource(R.drawable.old_bagan_myanmar)
                 currentSubPlaceIndex++
+                title = subPlacesList[currentSubPlaceIndex].name
             }
         }
     }
