@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity
 import com.example.shashankmohabia.atithi.Data.Model_Classes.Place
 import com.google.firebase.firestore.FirebaseFirestore
 import android.util.Log
+import com.example.shashankmohabia.atithi.Data.Model_Classes.Place.Companion.currentPlace
 import com.example.shashankmohabia.atithi.Data.Model_Classes.SubPlace
 import com.example.shashankmohabia.atithi.Data.Model_Classes.SubPlace.Companion.subPlacesList
 import org.jetbrains.anko.doAsync
@@ -16,7 +17,7 @@ fun AppCompatActivity.getPlaceData(place: String, callback: ServerInteractionLis
     docRef.get().addOnSuccessListener { documentSnapshot ->
         //val place_data= documentSnapshot.toObject<Place>(Place::class.java)
 
-        val place_data = Place(
+        currentPlace = Place(
                 documentSnapshot.data!!["name"].toString(),
                 documentSnapshot.data!!["city"].toString(),
                 documentSnapshot.data!!["state"].toString(),
@@ -29,7 +30,7 @@ fun AppCompatActivity.getPlaceData(place: String, callback: ServerInteractionLis
 
         //Log.d("eventlog", documentSnapshot.data.toString())
 
-        callback.onReceivePlaceData(place_data)
+        callback.onReceivePlaceData()
     }
 
     docRef.collection("SubPlaces")
@@ -56,6 +57,6 @@ fun AppCompatActivity.getPlaceData(place: String, callback: ServerInteractionLis
 }
 
 interface ServerInteractionListener{
-    fun onReceivePlaceData(data:Place)
+    fun onReceivePlaceData()
     fun onReceiveSubPlaceData()
 }

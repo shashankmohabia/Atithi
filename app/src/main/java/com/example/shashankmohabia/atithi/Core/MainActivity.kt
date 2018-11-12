@@ -82,8 +82,7 @@ class MainActivity :
                     Log.d("eventLog", subPlacesList.size.toString())
                 }
 
-                override fun onReceivePlaceData(data: Place) {
-                    currentPlace = data
+                override fun onReceivePlaceData() {
                     navigation_button.visibility = View.VISIBLE
                     startFragmentTransaction(PlaceInformationFragment(), true)
                 }
