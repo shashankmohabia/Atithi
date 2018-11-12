@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import com.example.shashankmohabia.atithi.Core.Community.CommunityFragment
 import com.example.shashankmohabia.atithi.Core.Explore.ExploreFragment
 import com.example.shashankmohabia.atithi.Core.Explore.dummy.DummyContent
@@ -83,6 +84,7 @@ class MainActivity :
 
                 override fun onReceivePlaceData(data: Place) {
                     currentPlace = data
+                    navigation_button.visibility = View.VISIBLE
                     startFragmentTransaction(PlaceInformationFragment(), true)
                 }
             })

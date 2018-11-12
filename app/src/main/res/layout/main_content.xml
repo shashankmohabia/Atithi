@@ -17,6 +17,18 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <android.support.design.widget.FloatingActionButton
+        android:id="@+id/navigation_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="8dp"
+        android:visibility="invisible"
+        android:src="@drawable/ic_directions"
+        app:layout_constraintBottom_toTopOf="@+id/capture_button"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <android.support.design.widget.FloatingActionButton
         android:id="@+id/capture_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -24,17 +36,6 @@
         android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
         android:src="@drawable/ic_camera"
-        app:layout_constraintBottom_toTopOf="@+id/navigation_button"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/navigation_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginBottom="8dp"
-        android:src="@drawable/ic_directions"
         app:layout_constraintBottom_toTopOf="@+id/search_object_button"
         app:layout_constraintEnd_toEndOf="parent" />
 
