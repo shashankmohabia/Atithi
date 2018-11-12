@@ -17,7 +17,9 @@ import com.example.shashankmohabia.atithi.Core.Explore.dummy.DummyContent
 import com.example.shashankmohabia.atithi.Core.Home.LandingFragment
 import com.example.shashankmohabia.atithi.Core.Home.PlaceInformationFragment
 import com.example.shashankmohabia.atithi.Data.Model_Classes.Place
+import com.example.shashankmohabia.atithi.Data.Model_Classes.Place.Companion.currentPlace
 import com.example.shashankmohabia.atithi.Data.Model_Classes.SubPlace
+import com.example.shashankmohabia.atithi.Data.Model_Classes.SubPlace.Companion.subPlacesList
 import com.example.shashankmohabia.atithi.Data.ServerClasses.ServerInteractionListener
 import com.example.shashankmohabia.atithi.Data.ServerClasses.getPlaceData
 import com.example.shashankmohabia.atithi.R
@@ -39,8 +41,6 @@ class MainActivity :
 
     private val SEARCH_OBJECT_REQUEST_CODE = 1
     private val SEARCH_PLACE_REQUEST_CODE = 2
-    private var currentPlace: Place? = null
-    lateinit var currentSubPlaceList: MutableList<SubPlace>
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -81,14 +81,13 @@ class MainActivity :
              cameraResult.setImageBitmap(imageBitmap)*/
             val place = "Mehrangarh_Fort-Jodhpur"
             getPlaceData(place, object : ServerInteractionListener {
-                override fun onReceiveSubPlaceData(data: MutableList<SubPlace>) {
-                    currentSubPlaceList = data
-                    Log.d("eventLog", currentSubPlaceList.size.toString())
+                override fun onReceiveSubPlaceData() {
+                    Log.d("eventLog", subPlacesList.size.toString())
                 }
 
                 override fun onReceivePlaceData(data: Place) {
                     currentPlace = data
-                    startFragmentTransaction(PlaceInformationFragment(), true, data)
+                    startFragmentTransaction(PlaceInformationFragment(), true)
                 }
             })
         }
@@ -97,18 +96,8 @@ class MainActivity :
             val TestString = "Shashank Mohabia"
             val url = "https://www.google.com/search?hl=en&site=imghp&tbm=isch&source=hp&q=" + TestString
             searchGoogleImages(url)
-            //startFragmentTransaction(CommunityFragment(), true)
         }
     }
-
-    override fun initializePlaceInformationData() {
-        placeName.text = currentPlace!!.name
-        placeAddress.text = "${currentPlace!!.city}, ${currentPlace!!.state}, ${currentPlace!!.country}"
-        placeTiming.text = "${currentPlace!!.opening_time} - ${currentPlace!!.closing_time}"
-        placeDescription.text = currentPlace!!.description
-        //Glide.with(this).load(currentPlace!!.image_link).into(placeImage)
-    }
-
 
     override fun onListFragmentInteraction(item: DummyContent.DummyItem?) {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.

@@ -6,6 +6,7 @@ import com.example.shashankmohabia.atithi.Data.Model_Classes.Place
 import com.google.firebase.firestore.FirebaseFirestore
 import android.util.Log
 import com.example.shashankmohabia.atithi.Data.Model_Classes.SubPlace
+import com.example.shashankmohabia.atithi.Data.Model_Classes.SubPlace.Companion.subPlacesList
 import org.jetbrains.anko.doAsync
 
 
@@ -30,7 +31,7 @@ fun AppCompatActivity.getPlaceData(place: String, callback: ServerInteractionLis
 
         callback.onReceivePlaceData(place_data)
     }
-     val subPlacesList: MutableList<SubPlace> = mutableListOf()
+
     docRef.collection("SubPlaces")
             .get()
             .addOnCompleteListener { task ->
@@ -48,7 +49,7 @@ fun AppCompatActivity.getPlaceData(place: String, callback: ServerInteractionLis
                 } else {
                     Log.d(TAG, "Error getting documents: ", task.exception)
                 }
-                callback.onReceiveSubPlaceData(subPlacesList)
+                callback.onReceiveSubPlaceData()
 
             }
 
@@ -56,5 +57,5 @@ fun AppCompatActivity.getPlaceData(place: String, callback: ServerInteractionLis
 
 interface ServerInteractionListener{
     fun onReceivePlaceData(data:Place)
-    fun onReceiveSubPlaceData(data:MutableList<SubPlace>)
+    fun onReceiveSubPlaceData()
 }

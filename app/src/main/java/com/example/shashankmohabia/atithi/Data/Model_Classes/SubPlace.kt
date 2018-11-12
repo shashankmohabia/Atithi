@@ -5,4 +5,9 @@ data class SubPlace(
         val description: String,
         val image_link: String,
         val direction_instruction: String
-)
+) {
+    companion object {
+        val subPlacesList: MutableList<SubPlace> = mutableListOf()
+    }
+
+}

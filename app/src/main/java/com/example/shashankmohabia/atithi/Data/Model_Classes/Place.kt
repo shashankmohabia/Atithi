@@ -9,4 +9,9 @@ data class Place(
         val image_link: String,
         val opening_time: String,
         val closing_time: String
-)
+) {
+    companion object {
+        lateinit var currentPlace: Place
+    }
+
+}

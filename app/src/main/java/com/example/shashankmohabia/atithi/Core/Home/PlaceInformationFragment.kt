@@ -7,8 +7,10 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.example.shashankmohabia.atithi.Data.Model_Classes.Place
 
 import com.example.shashankmohabia.atithi.R
+import kotlinx.android.synthetic.main.place_information_fragment.*
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -46,7 +48,14 @@ class PlaceInformationFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        listener!!.initializePlaceInformationData()
+        initializePlaceInformationData()
+    }
+
+    private fun initializePlaceInformationData() {
+        placeName.text = Place.currentPlace!!.name
+        placeAddress.text = "${Place.currentPlace!!.city}, ${Place.currentPlace!!.state}, ${Place.currentPlace!!.country}"
+        placeTiming.text = "${Place.currentPlace!!.opening_time} - ${Place.currentPlace!!.closing_time}"
+        placeDescription.text = Place.currentPlace!!.description
     }
 
     override fun onAttach(context: Context) {
@@ -64,7 +73,7 @@ class PlaceInformationFragment : Fragment() {
     }
 
     interface OnFragmentInteractionListener {
-        fun initializePlaceInformationData()
+
     }
 
     companion object {

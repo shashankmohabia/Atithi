@@ -5,7 +5,7 @@
     android:layout_height="match_parent">
 
     <android.support.v7.widget.AppCompatImageView
-        android:id="@+id/navigation_picture"
+        android:id="@+id/navigation_image"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:adjustViewBounds="true"
@@ -34,7 +34,7 @@
         android:layout_marginBottom="8dp"
         android:backgroundTint="@color/colorSecondaryTextDefaultMaterialLight"
         android:src="@drawable/ic_directions"
-        app:layout_constraintBottom_toBottomOf="@+id/navigation_picture"
+        app:layout_constraintBottom_toBottomOf="@+id/navigation_image"
         app:layout_constraintEnd_toEndOf="parent" />
 
 </android.support.constraint.ConstraintLayout>
