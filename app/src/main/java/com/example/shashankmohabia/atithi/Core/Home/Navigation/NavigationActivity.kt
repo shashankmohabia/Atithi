@@ -24,7 +24,7 @@ class NavigationActivity : AppCompatActivity() {
 
         setContentView(R.layout.navigation_main)
 
-        title = subPlacesList[currentSubPlaceIndex].name
+        updateView()
 
         setSupportActionBar(navigation_toolbar)
 
@@ -39,11 +39,15 @@ class NavigationActivity : AppCompatActivity() {
             if (currentSubPlaceIndex == subPlacesList.size - 1) {
                 toast("This is the end to the tour!")
             } else {
-                navigation_image.setImageResource(R.drawable.old_bagan_myanmar)
                 currentSubPlaceIndex++
-                title = subPlacesList[currentSubPlaceIndex].name
+                updateView()
             }
         }
+    }
+
+    private fun updateView() {
+        navigation_image.setImageResource(R.drawable.old_bagan_myanmar)
+        title = subPlacesList[currentSubPlaceIndex].name
     }
 
     private fun setFloatingButtons() {
@@ -63,6 +67,7 @@ class NavigationActivity : AppCompatActivity() {
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
+
         for ((index) in subPlacesList.withIndex()) {
             menu.add(0, index, NONE, subPlacesList[index].name)
         }
@@ -75,13 +80,12 @@ class NavigationActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        return when (item.itemId) {
-            R.id.action_settings -> true
-            else -> super.onOptionsItemSelected(item)
-        }
+
+        toast(item.itemId.toString())
+        currentSubPlaceIndex = item.itemId.toString().toInt()
+        updateView()
+        return true
+
     }
 }
 
