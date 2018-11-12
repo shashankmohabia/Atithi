@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import com.bumptech.glide.Glide
 import com.example.shashankmohabia.atithi.Data.Model_Classes.SubPlace.Companion.currentSubPlaceIndex
 import com.example.shashankmohabia.atithi.Data.Model_Classes.SubPlace.Companion.subPlacesList
 import com.example.shashankmohabia.atithi.R
@@ -46,7 +47,8 @@ class NavigationActivity : AppCompatActivity() {
     }
 
     private fun updateView() {
-        navigation_image.setImageResource(R.drawable.old_bagan_myanmar)
+        Glide.with(this).load(subPlacesList[currentSubPlaceIndex].image_link).into(navigation_image)
+        //navigation_image.setImageResource(R.drawable.old_bagan_myanmar)
         title = subPlacesList[currentSubPlaceIndex].name
     }
 

@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.bumptech.glide.Glide
 import com.example.shashankmohabia.atithi.Data.Model_Classes.Place
 
 import com.example.shashankmohabia.atithi.R
@@ -56,6 +57,7 @@ class PlaceInformationFragment : Fragment() {
         placeAddress.text = "${Place.currentPlace!!.city}, ${Place.currentPlace!!.state}, ${Place.currentPlace!!.country}"
         placeTiming.text = "${Place.currentPlace!!.opening_time} - ${Place.currentPlace!!.closing_time}"
         placeDescription.text = Place.currentPlace!!.description
+        Glide.with(activity).load(Place.currentPlace.image_link).into(placeImage)
     }
 
     override fun onAttach(context: Context) {
