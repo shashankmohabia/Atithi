@@ -9,7 +9,7 @@ import com.example.shashankmohabia.atithi.Data.Model_Classes.SubPlace.Companion.
 import com.example.shashankmohabia.atithi.R
 import com.example.shashankmohabia.atithi.Utils.Extensions.getDialogueBox
 import com.example.shashankmohabia.atithi.Utils.Extensions.removeStatusBar
-import kotlinx.android.synthetic.main.activity_navigation.*
+import kotlinx.android.synthetic.main.navigation_main.*
 import kotlinx.android.synthetic.main.navigation_content.*
 import org.jetbrains.anko.toast
 
@@ -21,7 +21,7 @@ class NavigationActivity : AppCompatActivity() {
 
         removeStatusBar()
 
-        setContentView(R.layout.activity_navigation)
+        setContentView(R.layout.navigation_main)
         setSupportActionBar(navigation_toolbar)
 
         setFloatingButtons()
