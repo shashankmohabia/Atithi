@@ -36,6 +36,6 @@ fun AppCompatActivity.searchGoogleImages(url: String) {
     startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(url)))
 }
 
-fun AppCompatActivity.startNavigationIntent() {
+fun AppCompatActivity.getNavigationIntent() {
     startActivity(Intent(this, NavigationActivity::class.java))
 }

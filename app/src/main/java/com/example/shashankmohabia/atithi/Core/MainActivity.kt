@@ -1,7 +1,6 @@
 package com.example.shashankmohabia.atithi.Core
 
 import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import android.support.design.widget.NavigationView
 import android.support.v4.view.GravityCompat
@@ -10,7 +9,6 @@ import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
-import com.bumptech.glide.Glide
 import com.example.shashankmohabia.atithi.Core.Community.CommunityFragment
 import com.example.shashankmohabia.atithi.Core.Explore.ExploreFragment
 import com.example.shashankmohabia.atithi.Core.Explore.dummy.DummyContent
@@ -18,7 +16,6 @@ import com.example.shashankmohabia.atithi.Core.Home.LandingFragment
 import com.example.shashankmohabia.atithi.Core.Home.PlaceInformationFragment
 import com.example.shashankmohabia.atithi.Data.Model_Classes.Place
 import com.example.shashankmohabia.atithi.Data.Model_Classes.Place.Companion.currentPlace
-import com.example.shashankmohabia.atithi.Data.Model_Classes.SubPlace
 import com.example.shashankmohabia.atithi.Data.Model_Classes.SubPlace.Companion.subPlacesList
 import com.example.shashankmohabia.atithi.Data.ServerClasses.ServerInteractionListener
 import com.example.shashankmohabia.atithi.Data.ServerClasses.getPlaceData
@@ -26,11 +23,10 @@ import com.example.shashankmohabia.atithi.R
 import com.example.shashankmohabia.atithi.Utils.Extensions.getCameraIntent
 import com.example.shashankmohabia.atithi.Utils.Extensions.searchGoogleImages
 import com.example.shashankmohabia.atithi.Utils.Extensions.startFragmentTransaction
-import com.example.shashankmohabia.atithi.Utils.Extensions.startNavigationIntent
+import com.example.shashankmohabia.atithi.Utils.Extensions.getNavigationIntent
 import kotlinx.android.synthetic.main.main_activity.*
 import kotlinx.android.synthetic.main.main_app_bar.*
 import kotlinx.android.synthetic.main.main_content.*
-import kotlinx.android.synthetic.main.place_information_fragment.*
 
 class MainActivity :
         AppCompatActivity(),
@@ -67,7 +63,7 @@ class MainActivity :
         }
 
         navigation_button.setOnClickListener { view ->
-            startNavigationIntent()
+            getNavigationIntent()
         }
 
         search_object_button.setOnClickListener {

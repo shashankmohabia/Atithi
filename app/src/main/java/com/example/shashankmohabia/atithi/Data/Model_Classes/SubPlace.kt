@@ -8,6 +8,6 @@ data class SubPlace(
 ) {
     companion object {
         val subPlacesList: MutableList<SubPlace> = mutableListOf()
+        var currentSubPlaceIndex = 0
     }
-
 }

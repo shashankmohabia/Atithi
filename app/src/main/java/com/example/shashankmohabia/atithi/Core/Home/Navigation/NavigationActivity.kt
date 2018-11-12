@@ -13,8 +13,6 @@ import kotlinx.android.synthetic.main.navigation_content.*
 
 class NavigationActivity : AppCompatActivity() {
 
-    var i = 0
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
