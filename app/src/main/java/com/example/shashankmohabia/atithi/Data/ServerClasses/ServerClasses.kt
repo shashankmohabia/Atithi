@@ -50,6 +50,7 @@ fun AppCompatActivity.getPlaceData(place: String, callback: ServerInteractionLis
                 } else {
                     Log.d(TAG, "Error getting documents: ", task.exception)
                 }
+                subPlacesList.reverse()
                 callback.onReceiveSubPlaceData()
 
             }
