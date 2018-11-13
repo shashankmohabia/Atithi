@@ -8,7 +8,6 @@ import android.util.Log
 import com.example.shashankmohabia.atithi.Data.Model_Classes.Place.Companion.currentPlace
 import com.example.shashankmohabia.atithi.Data.Model_Classes.SubPlace
 import com.example.shashankmohabia.atithi.Data.Model_Classes.SubPlace.Companion.subPlacesList
-import org.jetbrains.anko.doAsync
 
 
 fun AppCompatActivity.getPlaceData(place: String, callback: ServerInteractionListener) {
@@ -27,8 +26,6 @@ fun AppCompatActivity.getPlaceData(place: String, callback: ServerInteractionLis
                 documentSnapshot.data!!["opening_time"].toString(),
                 documentSnapshot.data!!["closing_time"].toString()
         )
-
-        //Log.d("eventlog", documentSnapshot.data.toString())
     }
 
     docRef.collection("SubPlaces")
@@ -50,9 +47,7 @@ fun AppCompatActivity.getPlaceData(place: String, callback: ServerInteractionLis
                 }
                 subPlacesList.reverse()
                 callback.onReceivePlaceData()
-
             }
-
 }
 
 interface ServerInteractionListener {

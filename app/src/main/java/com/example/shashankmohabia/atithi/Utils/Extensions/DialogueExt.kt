@@ -2,6 +2,9 @@ package com.example.shashankmohabia.atithi.Utils.Extensions
 
 import android.support.v7.app.AppCompatActivity
 import org.jetbrains.anko.alert
+import android.app.ProgressDialog
+
+
 
 fun AppCompatActivity.getDialogueBox(t: String, message: String) {
     this.alert(message) {
@@ -9,3 +12,14 @@ fun AppCompatActivity.getDialogueBox(t: String, message: String) {
         positiveButton("OK"){}
     }.show()
 }
+
+
+fun AppCompatActivity.getProgressDialog(): ProgressDialog {
+    return ProgressDialog(this)
+            .apply {
+                setMessage("Loading")
+                show()
+            }
+}
+
+

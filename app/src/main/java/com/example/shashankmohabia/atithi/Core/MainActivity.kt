@@ -19,10 +19,7 @@ import com.example.shashankmohabia.atithi.Data.Model_Classes.SubPlace.Companion.
 import com.example.shashankmohabia.atithi.Data.ServerClasses.ServerInteractionListener
 import com.example.shashankmohabia.atithi.Data.ServerClasses.getPlaceData
 import com.example.shashankmohabia.atithi.R
-import com.example.shashankmohabia.atithi.Utils.Extensions.getCameraIntent
-import com.example.shashankmohabia.atithi.Utils.Extensions.searchGoogleImages
-import com.example.shashankmohabia.atithi.Utils.Extensions.startFragmentTransaction
-import com.example.shashankmohabia.atithi.Utils.Extensions.getNavigationIntent
+import com.example.shashankmohabia.atithi.Utils.Extensions.*
 import kotlinx.android.synthetic.main.main_activity.*
 import kotlinx.android.synthetic.main.main_app_bar.*
 import kotlinx.android.synthetic.main.main_content.*
@@ -74,10 +71,11 @@ class MainActivity :
         if (requestCode == SEARCH_PLACE_REQUEST_CODE && resultCode == RESULT_OK) {
             /* val imageBitmap = data!!.extras.get("data") as Bitmap
              cameraResult.setImageBitmap(imageBitmap)*/
+            val progressDialog = getProgressDialog()
             val place = "Mehrangarh_Fort-Jodhpur"
             getPlaceData(place, object : ServerInteractionListener {
-
                 override fun onReceivePlaceData() {
+                    progressDialog.dismiss()
                     navigation_button.visibility = View.VISIBLE
                     startFragmentTransaction(PlaceInformationFragment(), true)
                 }
@@ -174,7 +172,6 @@ class MainActivity :
         return true
     }
 }
-
 
 
 
