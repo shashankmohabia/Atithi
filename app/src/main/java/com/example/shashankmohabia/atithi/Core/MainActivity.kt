@@ -1,12 +1,12 @@
 package com.example.shashankmohabia.atithi.Core
 
 import android.content.Intent
+import android.graphics.Bitmap
 import android.os.Bundle
 import android.support.design.widget.NavigationView
 import android.support.v4.view.GravityCompat
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
-import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -15,7 +15,8 @@ import com.example.shashankmohabia.atithi.Core.Explore.ExploreFragment
 import com.example.shashankmohabia.atithi.Core.Explore.dummy.DummyContent
 import com.example.shashankmohabia.atithi.Core.Home.LandingFragment
 import com.example.shashankmohabia.atithi.Core.Home.PlaceInformationFragment
-import com.example.shashankmohabia.atithi.Data.Model_Classes.SubPlace.Companion.subPlacesList
+import com.example.shashankmohabia.atithi.Data.API_Classes.APIInteractionListener
+import com.example.shashankmohabia.atithi.Data.API_Classes.getImageLabel
 import com.example.shashankmohabia.atithi.Data.ServerClasses.ServerInteractionListener
 import com.example.shashankmohabia.atithi.Data.ServerClasses.getPlaceData
 import com.example.shashankmohabia.atithi.R
@@ -23,6 +24,7 @@ import com.example.shashankmohabia.atithi.Utils.Extensions.*
 import kotlinx.android.synthetic.main.main_activity.*
 import kotlinx.android.synthetic.main.main_app_bar.*
 import kotlinx.android.synthetic.main.main_content.*
+import org.jetbrains.anko.toast
 
 class MainActivity :
         AppCompatActivity(),
@@ -69,15 +71,19 @@ class MainActivity :
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if (requestCode == SEARCH_PLACE_REQUEST_CODE && resultCode == RESULT_OK) {
-            /* val imageBitmap = data!!.extras.get("data") as Bitmap
-             cameraResult.setImageBitmap(imageBitmap)*/
+            val imageBitmap = data!!.extras.get("data") as Bitmap
             val progressDialog = getProgressDialog()
-            val place = "Mehrangarh_Fort-Jodhpur"
-            getPlaceData(place, object : ServerInteractionListener {
-                override fun onReceivePlaceData() {
-                    progressDialog.dismiss()
-                    navigation_button.visibility = View.VISIBLE
-                    startFragmentTransaction(PlaceInformationFragment(), true)
+            getImageLabel(imageBitmap, object : APIInteractionListener {
+                override fun onReceive(label: String) {
+                    toast(label)
+                    val place = "Mehrangarh_Fort-Jodhpur"
+                    getPlaceData(place, object : ServerInteractionListener {
+                        override fun onReceivePlaceData() {
+                            progressDialog.dismiss()
+                            navigation_button.visibility = View.VISIBLE
+                            startFragmentTransaction(PlaceInformationFragment(), true)
+                        }
+                    })
                 }
             })
         }

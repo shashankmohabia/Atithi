@@ -9,7 +9,7 @@ import android.app.ProgressDialog
 fun AppCompatActivity.getDialogueBox(t: String, message: String) {
     this.alert(message) {
          title = t
-        positiveButton("OK"){}
+
     }.show()
 }
 
