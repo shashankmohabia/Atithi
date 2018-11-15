@@ -37,9 +37,11 @@ dependencies {
 
     //Anko Libraries
     implementation "org.jetbrains.anko:anko:$anko_version"
+/*
 
     //Gson Library
     implementation 'com.google.code.gson:gson:2.8.5'
+*/
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
@@ -50,6 +52,9 @@ dependencies {
 
     //API request library
     implementation 'com.github.kittinunf.fuel:fuel-android:1.15.1'
+
+    //Clickable image view library
+    implementation 'com.github.Lukle:ClickableAreasImages:v0.1'
 /*
     //double-tap listener library
     implementation 'com.github.pedromassango:doubleClick:2.0'
