@@ -1,7 +1,6 @@
 package com.example.shashankmohabia.atithi.Core
 
 import android.content.Intent
-import android.graphics.Bitmap
 import android.os.Bundle
 import android.support.design.widget.NavigationView
 import android.support.v4.view.GravityCompat
@@ -25,6 +24,7 @@ import kotlinx.android.synthetic.main.main_activity.*
 import kotlinx.android.synthetic.main.main_app_bar.*
 import kotlinx.android.synthetic.main.main_content.*
 import org.jetbrains.anko.toast
+import java.io.File
 
 class MainActivity :
         AppCompatActivity(),
@@ -71,9 +71,9 @@ class MainActivity :
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if (requestCode == SEARCH_PLACE_REQUEST_CODE && resultCode == RESULT_OK) {
-            val imageBitmap = data!!.extras.get("data") as Bitmap
+            val imageFile = data!!.extras.get("data") as File
             val progressDialog = getProgressDialog()
-            getImageLabel(imageBitmap, object : APIInteractionListener {
+            getImageLabel(imageFile, object : APIInteractionListener {
                 override fun onReceive(label: String) {
                     toast(label)
                     val place = "Mehrangarh_Fort-Jodhpur"
