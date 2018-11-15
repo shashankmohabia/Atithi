@@ -7,10 +7,11 @@ import com.google.firebase.firestore.FirebaseFirestore
 import android.util.Log
 import com.example.shashankmohabia.atithi.Data.Model_Classes.Place.Companion.currentPlace
 import com.example.shashankmohabia.atithi.Data.Model_Classes.SubPlace
+import com.example.shashankmohabia.atithi.Data.Model_Classes.SubPlace.Companion.initializeCurrentSubPlaceIndex
 import com.example.shashankmohabia.atithi.Data.Model_Classes.SubPlace.Companion.subPlacesList
 
 
-fun AppCompatActivity.getPlaceData(place: String, callback: ServerInteractionListener) {
+fun AppCompatActivity.getPlaceData(place: String, subPlace: String, callback: ServerInteractionListener) {
     val db = FirebaseFirestore.getInstance()
     val docRef = db.collection("Places").document(place)
     docRef.get().addOnSuccessListener { documentSnapshot ->
@@ -46,6 +47,7 @@ fun AppCompatActivity.getPlaceData(place: String, callback: ServerInteractionLis
                     Log.d(TAG, "Error getting documents: ", task.exception)
                 }
                 subPlacesList.reverse()
+                initializeCurrentSubPlaceIndex(subPlace)
                 callback.onReceivePlaceData()
             }
 }

@@ -48,7 +48,6 @@ class NavigationActivity : AppCompatActivity() {
 
     private fun updateView() {
         Glide.with(this).load(subPlacesList[currentSubPlaceIndex].image_link).into(navigation_image)
-        //navigation_image.setImageResource(R.drawable.old_bagan_myanmar)
         title = subPlacesList[currentSubPlaceIndex].name
     }
 

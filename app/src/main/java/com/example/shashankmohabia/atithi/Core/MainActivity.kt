@@ -77,8 +77,8 @@ class MainActivity :
             getImageLabel(imageBitArray, object : APIInteractionListener {
                 override fun onReceive(label: String) {
                     toast(label)
-                    val place = "Mehrangarh_Fort-Jodhpur"
-                    getPlaceData(place, object : ServerInteractionListener {
+                    val labelList = label.split("&")
+                    getPlaceData(labelList[0], labelList[1], object : ServerInteractionListener {
                         override fun onReceivePlaceData() {
                             progressDialog.dismiss()
                             navigation_button.visibility = View.VISIBLE
