@@ -12,6 +12,7 @@ data class Place(
 ) {
     companion object {
         lateinit var currentPlace: Place
-    }
 
+        var placeList = mutableListOf<Place>()
+    }
 }
