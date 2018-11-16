@@ -14,8 +14,6 @@ class BootActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.boot_activity)
 
-        getPlaceList()
-
         val intent = Intent(this, MainActivity::class.java)
         Thread {
             try {

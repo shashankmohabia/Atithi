@@ -52,7 +52,7 @@ fun AppCompatActivity.getPlaceData(place: String, subplace: String, callback: Se
             }
 }
 
-fun AppCompatActivity.getPlaceList() {
+fun AppCompatActivity.getPlaceList(callback: AnotherServerInteractionListener): Boolean {
     FirebaseFirestore.getInstance().collection("Places").get().addOnCompleteListener {
         if (it.isSuccessful) {
             for (document in it.result!!) {
@@ -70,10 +70,16 @@ fun AppCompatActivity.getPlaceList() {
                 Log.d("ajat", document.id + " => " + document.data)
                 Log.d("ajat", placeList.size.toString())
             }
+            callback.onReceivePlaceList()
         }
     }
+    return true
 }
 
 interface ServerInteractionListener {
     fun onReceivePlaceData()
+}
+
+interface AnotherServerInteractionListener {
+    fun onReceivePlaceList()
 }

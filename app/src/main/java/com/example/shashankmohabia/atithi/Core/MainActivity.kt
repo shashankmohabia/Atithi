@@ -17,8 +17,10 @@ import com.example.shashankmohabia.atithi.Core.Home.PlaceInformationFragment
 import com.example.shashankmohabia.atithi.Data.API_Classes.APIInteractionListener
 import com.example.shashankmohabia.atithi.Data.API_Classes.getImageLabel
 import com.example.shashankmohabia.atithi.Data.Model_Classes.Place
+import com.example.shashankmohabia.atithi.Data.ServerClasses.AnotherServerInteractionListener
 import com.example.shashankmohabia.atithi.Data.ServerClasses.ServerInteractionListener
 import com.example.shashankmohabia.atithi.Data.ServerClasses.getPlaceData
+import com.example.shashankmohabia.atithi.Data.ServerClasses.getPlaceList
 import com.example.shashankmohabia.atithi.R
 import com.example.shashankmohabia.atithi.Utils.Extensions.*
 import kotlinx.android.synthetic.main.main_activity.*
@@ -114,8 +116,13 @@ class MainActivity :
                     return@setOnNavigationItemSelectedListener true
                 }
                 R.id.tour -> {
-                    startFragmentTransaction(TourFragment())
-                    return@setOnNavigationItemSelectedListener true
+                    val progressDialog = getProgressDialog()
+                    getPlaceList(object : AnotherServerInteractionListener {
+                        override fun onReceivePlaceList() {
+                            progressDialog.dismiss()
+                            startFragmentTransaction(TourFragment())
+                        }
+                    })
                 }
                 R.id.community -> {
                     startFragmentTransaction(CommunityFragment())
