@@ -113,7 +113,7 @@ class MainActivity :
                     startFragmentTransaction(PlaceInformationFragment())
                     return@setOnNavigationItemSelectedListener true
                 }
-                R.id.explore -> {
+                R.id.tour -> {
                     startFragmentTransaction(ExploreFragment())
                     return@setOnNavigationItemSelectedListener true
                 }
