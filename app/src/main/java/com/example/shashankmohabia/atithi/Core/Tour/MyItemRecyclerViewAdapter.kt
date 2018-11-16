@@ -10,6 +10,7 @@ import com.example.shashankmohabia.atithi.R
 
 import com.example.shashankmohabia.atithi.Core.Tour.TourFragment.OnListFragmentInteractionListener
 import com.example.shashankmohabia.atithi.Core.Tour.dummy.DummyContent.DummyItem
+import com.example.shashankmohabia.atithi.Data.Model_Classes.Place
 
 import kotlinx.android.synthetic.main.tour_fragment_item.view.*
 
@@ -19,7 +20,7 @@ import kotlinx.android.synthetic.main.tour_fragment_item.view.*
  * TODO: Replace the implementation with code for your data type.
  */
 class MyItemRecyclerViewAdapter(
-        private val mValues: List<DummyItem>,
+        private val mValues: MutableList<Place>,
         private val mListener: OnListFragmentInteractionListener?)
     : RecyclerView.Adapter<MyItemRecyclerViewAdapter.ViewHolder>() {
 
@@ -27,7 +28,7 @@ class MyItemRecyclerViewAdapter(
 
     init {
         mOnClickListener = View.OnClickListener { v ->
-            val item = v.tag as DummyItem
+            val item = v.tag as Place
             // Notify the active callbacks interface (the activity, if the fragment is attached to
             // one) that an item has been selected.
             mListener?.onListFragmentInteraction(item)
@@ -43,7 +44,7 @@ class MyItemRecyclerViewAdapter(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = mValues[position]
         //holder.mIdView.text = item.id
-        holder.mContentView.text = item.content
+        holder.mContentView.text = item.name
 
         with(holder.mView) {
             tag = item

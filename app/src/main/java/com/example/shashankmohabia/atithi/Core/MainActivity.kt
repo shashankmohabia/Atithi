@@ -12,11 +12,11 @@ import android.view.MenuItem
 import android.view.View
 import com.example.shashankmohabia.atithi.Core.Community.CommunityFragment
 import com.example.shashankmohabia.atithi.Core.Tour.TourFragment
-import com.example.shashankmohabia.atithi.Core.Tour.dummy.DummyContent
 import com.example.shashankmohabia.atithi.Core.Home.LandingFragment
 import com.example.shashankmohabia.atithi.Core.Home.PlaceInformationFragment
 import com.example.shashankmohabia.atithi.Data.API_Classes.APIInteractionListener
 import com.example.shashankmohabia.atithi.Data.API_Classes.getImageLabel
+import com.example.shashankmohabia.atithi.Data.Model_Classes.Place
 import com.example.shashankmohabia.atithi.Data.ServerClasses.ServerInteractionListener
 import com.example.shashankmohabia.atithi.Data.ServerClasses.getPlaceData
 import com.example.shashankmohabia.atithi.R
@@ -96,7 +96,7 @@ class MainActivity :
         }
     }
 
-    override fun onListFragmentInteraction(item: DummyContent.DummyItem?) {
+    override fun onListFragmentInteraction(item: Place) {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 

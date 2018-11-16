@@ -11,8 +11,8 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.shashankmohabia.atithi.R
 
-import com.example.shashankmohabia.atithi.Core.Tour.dummy.DummyContent
-import com.example.shashankmohabia.atithi.Core.Tour.dummy.DummyContent.DummyItem
+import com.example.shashankmohabia.atithi.Data.Model_Classes.Place
+import com.example.shashankmohabia.atithi.Data.Model_Classes.Place.Companion.placeList
 
 /**
  * A fragment representing a list of Items.
@@ -45,7 +45,7 @@ class TourFragment : Fragment() {
                     columnCount <= 1 -> LinearLayoutManager(context)
                     else -> GridLayoutManager(context, columnCount)
                 }
-                adapter = MyItemRecyclerViewAdapter(DummyContent.ITEMS, listener)
+                adapter = MyItemRecyclerViewAdapter(placeList, listener)
             }
         }
         return view
@@ -78,7 +78,7 @@ class TourFragment : Fragment() {
      */
     interface OnListFragmentInteractionListener {
         // TODO: Update argument type and name
-        fun onListFragmentInteraction(item: DummyItem?)
+        fun onListFragmentInteraction(item: Place)
     }
 
     companion object {
