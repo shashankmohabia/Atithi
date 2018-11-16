@@ -6,10 +6,10 @@ import com.example.shashankmohabia.atithi.Data.Model_Classes.Place
 import com.google.firebase.firestore.FirebaseFirestore
 import android.util.Log
 import com.example.shashankmohabia.atithi.Data.Model_Classes.Place.Companion.currentPlace
+import com.example.shashankmohabia.atithi.Data.Model_Classes.Place.Companion.placeList
 import com.example.shashankmohabia.atithi.Data.Model_Classes.SubPlace
 import com.example.shashankmohabia.atithi.Data.Model_Classes.SubPlace.Companion.initializeCurrentSubPlaceIndex
 import com.example.shashankmohabia.atithi.Data.Model_Classes.SubPlace.Companion.subPlacesList
-
 
 fun AppCompatActivity.getPlaceData(place: String, subplace: String, callback: ServerInteractionListener) {
     val db = FirebaseFirestore.getInstance()
@@ -50,6 +50,28 @@ fun AppCompatActivity.getPlaceData(place: String, subplace: String, callback: Se
                 initializeCurrentSubPlaceIndex(subplace)
                 callback.onReceivePlaceData()
             }
+}
+
+fun AppCompatActivity.getPlaceList() {
+    FirebaseFirestore.getInstance().collection("Places").get().addOnCompleteListener {
+        if (it.isSuccessful) {
+            for (document in it.result!!) {
+                val place = Place(
+                        document.data["name"].toString(),
+                        document.data["city"].toString(),
+                        document.data["state"].toString(),
+                        document.data["country"].toString(),
+                        document.data["description"].toString(),
+                        document.data["image_link"].toString(),
+                        document.data["opening_time"].toString(),
+                        document.data["closing_time"].toString()
+                )
+                placeList.add(place)
+                Log.d("ajat", document.id + " => " + document.data)
+                Log.d("ajat", placeList.size.toString())
+            }
+        }
+    }
 }
 
 interface ServerInteractionListener {
