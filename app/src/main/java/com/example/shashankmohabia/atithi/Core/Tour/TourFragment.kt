@@ -1,4 +1,4 @@
-package com.example.shashankmohabia.atithi.Core.Explore
+package com.example.shashankmohabia.atithi.Core.Tour
 
 import android.content.Context
 import android.os.Bundle
@@ -11,18 +11,18 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.shashankmohabia.atithi.R
 
-import com.example.shashankmohabia.atithi.Core.Explore.dummy.DummyContent
-import com.example.shashankmohabia.atithi.Core.Explore.dummy.DummyContent.DummyItem
+import com.example.shashankmohabia.atithi.Core.Tour.dummy.DummyContent
+import com.example.shashankmohabia.atithi.Core.Tour.dummy.DummyContent.DummyItem
 
 /**
  * A fragment representing a list of Items.
  * Activities containing this fragment MUST implement the
- * [ExploreFragment.OnListFragmentInteractionListener] interface.
+ * [TourFragment.OnListFragmentInteractionListener] interface.
  */
-class ExploreFragment : Fragment() {
+class TourFragment : Fragment() {
 
     // TODO: Customize parameters
-    private var columnCount = 1
+    private var columnCount = 2
 
     private var listener: OnListFragmentInteractionListener? = null
 
@@ -36,7 +36,7 @@ class ExploreFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        val view = inflater.inflate(R.layout.explore_fragment_item_list, container, false)
+        val view = inflater.inflate(R.layout.tour_fragment_item_list, container, false)
 
         // Set the adapter
         if (view is RecyclerView) {
@@ -89,7 +89,7 @@ class ExploreFragment : Fragment() {
         // TODO: Customize parameter initialization
         @JvmStatic
         fun newInstance(columnCount: Int) =
-                ExploreFragment().apply {
+                TourFragment().apply {
                     arguments = Bundle().apply {
                         putInt(ARG_COLUMN_COUNT, columnCount)
                     }

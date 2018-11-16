@@ -1,4 +1,4 @@
-package com.example.shashankmohabia.atithi.Core.Explore.dummy
+package com.example.shashankmohabia.atithi.Core.Tour.dummy
 
 import java.util.ArrayList
 import java.util.HashMap

@@ -1,4 +1,4 @@
-package com.example.shashankmohabia.atithi.Core.Explore
+package com.example.shashankmohabia.atithi.Core.Tour
 
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
@@ -8,10 +8,10 @@ import android.widget.TextView
 import com.example.shashankmohabia.atithi.R
 
 
-import com.example.shashankmohabia.atithi.Core.Explore.ExploreFragment.OnListFragmentInteractionListener
-import com.example.shashankmohabia.atithi.Core.Explore.dummy.DummyContent.DummyItem
+import com.example.shashankmohabia.atithi.Core.Tour.TourFragment.OnListFragmentInteractionListener
+import com.example.shashankmohabia.atithi.Core.Tour.dummy.DummyContent.DummyItem
 
-import kotlinx.android.synthetic.main.explore_fragment_item.view.*
+import kotlinx.android.synthetic.main.tour_fragment_item.view.*
 
 /**
  * [RecyclerView.Adapter] that can display a [DummyItem] and makes a call to the
@@ -36,7 +36,7 @@ class MyItemRecyclerViewAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
-                .inflate(R.layout.explore_fragment_item, parent, false)
+                .inflate(R.layout.tour_fragment_item, parent, false)
         return ViewHolder(view)
     }
 

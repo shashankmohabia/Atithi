@@ -6,7 +6,7 @@
     android:name="com.example.shashankmohabia.atithi.Core.Explore.ExploreFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginLeft="16dp"
-    android:layout_marginRight="16dp"
-    tools:context=".Core.Explore.ExploreFragment"
-    tools:listitem="@layout/explore_fragment_item" />
+    android:layout_marginLeft="8dp"
+    android:layout_marginRight="8dp"
+    tools:context=".Core.Tour.TourFragment"
+    tools:listitem="@layout/tour_fragment_item" />

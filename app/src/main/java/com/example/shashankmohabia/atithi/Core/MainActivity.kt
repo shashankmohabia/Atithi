@@ -11,8 +11,8 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import com.example.shashankmohabia.atithi.Core.Community.CommunityFragment
-import com.example.shashankmohabia.atithi.Core.Explore.ExploreFragment
-import com.example.shashankmohabia.atithi.Core.Explore.dummy.DummyContent
+import com.example.shashankmohabia.atithi.Core.Tour.TourFragment
+import com.example.shashankmohabia.atithi.Core.Tour.dummy.DummyContent
 import com.example.shashankmohabia.atithi.Core.Home.LandingFragment
 import com.example.shashankmohabia.atithi.Core.Home.PlaceInformationFragment
 import com.example.shashankmohabia.atithi.Data.API_Classes.APIInteractionListener
@@ -29,7 +29,7 @@ import org.jetbrains.anko.toast
 class MainActivity :
         AppCompatActivity(),
         NavigationView.OnNavigationItemSelectedListener,
-        ExploreFragment.OnListFragmentInteractionListener,
+        TourFragment.OnListFragmentInteractionListener,
         CommunityFragment.OnListFragmentInteractionListener,
         PlaceInformationFragment.OnFragmentInteractionListener {
 
@@ -114,7 +114,7 @@ class MainActivity :
                     return@setOnNavigationItemSelectedListener true
                 }
                 R.id.tour -> {
-                    startFragmentTransaction(ExploreFragment())
+                    startFragmentTransaction(TourFragment())
                     return@setOnNavigationItemSelectedListener true
                 }
                 R.id.community -> {
