@@ -22,7 +22,7 @@ import com.example.shashankmohabia.atithi.Data.Model_Classes.Place.Companion.pla
 class TourFragment : Fragment() {
 
     // TODO: Customize parameters
-    private var columnCount = 2
+    private var columnCount = 1
 
     private var listener: OnListFragmentInteractionListener? = null
 
