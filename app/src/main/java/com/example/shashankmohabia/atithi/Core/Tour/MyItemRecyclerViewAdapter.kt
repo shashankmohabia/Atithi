@@ -11,7 +11,7 @@ import com.bumptech.glide.Glide
 import com.example.shashankmohabia.atithi.R
 
 
-import com.example.shashankmohabia.atithi.Core.Tour.TourFragment.OnListFragmentInteractionListener
+import com.example.shashankmohabia.atithi.Core.Tour.TourFragment.TourFragmentInteractionListener
 import com.example.shashankmohabia.atithi.Core.Tour.dummy.DummyContent.DummyItem
 import com.example.shashankmohabia.atithi.Data.Model_Classes.Place
 
@@ -19,13 +19,13 @@ import kotlinx.android.synthetic.main.tour_fragment_item.view.*
 
 /**
  * [RecyclerView.Adapter] that can display a [DummyItem] and makes a call to the
- * specified [OnListFragmentInteractionListener].
+ * specified [TourFragmentInteractionListener].
  * TODO: Replace the implementation with code for your data type.
  */
 class MyItemRecyclerViewAdapter(
         private val context: Context,
         private val mValues: MutableList<Place>,
-        private val mListener: OnListFragmentInteractionListener?)
+        private val mListener: TourFragmentInteractionListener?)
     : RecyclerView.Adapter<MyItemRecyclerViewAdapter.ViewHolder>() {
 
     private val mOnClickListener: View.OnClickListener
@@ -35,7 +35,7 @@ class MyItemRecyclerViewAdapter(
             val item = v.tag as Place
             // Notify the active callbacks interface (the activity, if the fragment is attached to
             // one) that an item has been selected.
-            mListener?.onListFragmentInteraction(item)
+            mListener?.onTourFragmentInteraction(item)
         }
     }
 

@@ -31,7 +31,7 @@ import org.jetbrains.anko.toast
 class MainActivity :
         AppCompatActivity(),
         NavigationView.OnNavigationItemSelectedListener,
-        TourFragment.OnListFragmentInteractionListener,
+        TourFragment.TourFragmentInteractionListener,
         CommunityFragment.OnListFragmentInteractionListener,
         PlaceInformationFragment.OnFragmentInteractionListener {
 
@@ -98,8 +98,15 @@ class MainActivity :
         }
     }
 
-    override fun onListFragmentInteraction(item: Place) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override fun onTourFragmentInteraction(item: Place) {
+        val progressDialog = getProgressDialog()
+        getPlaceData(item.name + "-" + item.city, "", object : ServerInteractionListener {
+            override fun onReceivePlaceData() {
+                progressDialog.dismiss()
+                navigation_button.visibility = View.VISIBLE
+                startFragmentTransaction(PlaceInformationFragment(), true)
+            }
+        })
     }
 
     override fun onListFragmentInteraction(item: com.example.shashankmohabia.atithi.Core.Community.dummy.DummyContent.DummyItem?) {
