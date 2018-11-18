@@ -11,7 +11,7 @@ data class Place(
         val closing_time: String
 ) {
     companion object {
-        lateinit var currentPlace: Place
+        var currentPlace: Place? = null
 
         var placeList = mutableListOf<Place>()
     }

@@ -57,7 +57,7 @@ class PlaceInformationFragment : Fragment() {
         placeAddress.text = "${Place.currentPlace!!.city}, ${Place.currentPlace!!.state}, ${Place.currentPlace!!.country}"
         placeTiming.text = "${Place.currentPlace!!.opening_time} - ${Place.currentPlace!!.closing_time}"
         placeDescription.text = Place.currentPlace!!.description
-        Glide.with(activity).load(Place.currentPlace.image_link).into(placeImage)
+        Glide.with(activity).load(Place.currentPlace!!.image_link).into(placeImage)
     }
 
     override fun onAttach(context: Context) {

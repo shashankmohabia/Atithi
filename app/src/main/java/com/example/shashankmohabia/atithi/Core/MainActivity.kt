@@ -17,6 +17,7 @@ import com.example.shashankmohabia.atithi.Core.Home.PlaceInformationFragment
 import com.example.shashankmohabia.atithi.Data.API_Classes.APIInteractionListener
 import com.example.shashankmohabia.atithi.Data.API_Classes.getImageLabel
 import com.example.shashankmohabia.atithi.Data.Model_Classes.Place
+import com.example.shashankmohabia.atithi.Data.Model_Classes.Place.Companion.currentPlace
 import com.example.shashankmohabia.atithi.Data.Model_Classes.SubPlace.Companion.subPlacesList
 import com.example.shashankmohabia.atithi.Data.ServerClasses.AnotherServerInteractionListener
 import com.example.shashankmohabia.atithi.Data.ServerClasses.ServerInteractionListener
@@ -122,10 +123,12 @@ class MainActivity :
         bottom_navigation.setOnNavigationItemSelectedListener {
             when (it.itemId) {
                 R.id.home -> {
-                    if (subPlacesList.size != 0) navigation_button.visibility = View.VISIBLE
                     capture_button.visibility = View.VISIBLE
                     search_object_button.visibility = View.VISIBLE
-                    startFragmentTransaction(PlaceInformationFragment())
+                    if (currentPlace != null) {
+                        navigation_button.visibility = View.VISIBLE
+                        startFragmentTransaction(PlaceInformationFragment())
+                    } else startFragmentTransaction(LandingFragment())
                     return@setOnNavigationItemSelectedListener true
                 }
                 R.id.tour -> {

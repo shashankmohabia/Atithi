@@ -53,6 +53,7 @@ fun AppCompatActivity.getPlaceData(place: String, subplace: String, callback: Se
 }
 
 fun AppCompatActivity.getPlaceList(callback: AnotherServerInteractionListener): Boolean {
+    placeList.clear()
     FirebaseFirestore.getInstance().collection("Places").get().addOnCompleteListener {
         if (it.isSuccessful) {
             for (document in it.result!!) {
