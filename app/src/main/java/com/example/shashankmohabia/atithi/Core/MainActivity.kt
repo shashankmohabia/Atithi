@@ -17,6 +17,7 @@ import com.example.shashankmohabia.atithi.Core.Home.PlaceInformationFragment
 import com.example.shashankmohabia.atithi.Data.API_Classes.APIInteractionListener
 import com.example.shashankmohabia.atithi.Data.API_Classes.getImageLabel
 import com.example.shashankmohabia.atithi.Data.Model_Classes.Place
+import com.example.shashankmohabia.atithi.Data.Model_Classes.SubPlace.Companion.subPlacesList
 import com.example.shashankmohabia.atithi.Data.ServerClasses.AnotherServerInteractionListener
 import com.example.shashankmohabia.atithi.Data.ServerClasses.ServerInteractionListener
 import com.example.shashankmohabia.atithi.Data.ServerClasses.getPlaceData
@@ -115,10 +116,15 @@ class MainActivity :
 
     private fun setBottomNavBar() {
         startFragmentTransaction(LandingFragment())
+        capture_button.visibility = View.VISIBLE
+        search_object_button.visibility = View.VISIBLE
         bottom_navigation.selectedItemId = R.id.home
         bottom_navigation.setOnNavigationItemSelectedListener {
             when (it.itemId) {
                 R.id.home -> {
+                    if (subPlacesList.size != 0) navigation_button.visibility = View.VISIBLE
+                    capture_button.visibility = View.VISIBLE
+                    search_object_button.visibility = View.VISIBLE
                     startFragmentTransaction(PlaceInformationFragment())
                     return@setOnNavigationItemSelectedListener true
                 }
@@ -126,12 +132,18 @@ class MainActivity :
                     val progressDialog = getProgressDialog()
                     getPlaceList(object : AnotherServerInteractionListener {
                         override fun onReceivePlaceList() {
+                            navigation_button.visibility = View.INVISIBLE
+                            capture_button.visibility = View.INVISIBLE
+                            search_object_button.visibility = View.INVISIBLE
                             progressDialog.dismiss()
                             startFragmentTransaction(TourFragment())
                         }
                     })
                 }
                 R.id.community -> {
+                    navigation_button.visibility = View.INVISIBLE
+                    capture_button.visibility = View.INVISIBLE
+                    search_object_button.visibility = View.INVISIBLE
                     startFragmentTransaction(CommunityFragment())
                     return@setOnNavigationItemSelectedListener true
                 }
