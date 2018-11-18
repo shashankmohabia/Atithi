@@ -9,6 +9,8 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
 
+    <uses-sdk tools:overrideLibrary="com.google.vr.sdk.audio, com.google.vr.sdk.base, com.google.vr.widgets.common, com.google.vr.sdk.widgets.pano, com.google.vr.sdk.widgets.video"/>
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/app_logo"

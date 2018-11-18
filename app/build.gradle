@@ -65,6 +65,14 @@ dependencies {
     //double-tap listener library
     implementation 'com.github.pedromassango:doubleClick:2.0'
 */
+
+    //Google VR SDK
+    compile 'com.google.vr:sdk-audio:1.160.0'
+    compile 'com.google.vr:sdk-base:1.160.0'
+    compile 'com.google.vr:sdk-common:1.160.0'
+    compile 'com.google.vr:sdk-commonwidget:1.160.0'
+    compile 'com.google.vr:sdk-panowidget:1.160.0'
+    compile 'com.google.vr:sdk-videowidget:1.160.0'
 }
 
 kotlin {
