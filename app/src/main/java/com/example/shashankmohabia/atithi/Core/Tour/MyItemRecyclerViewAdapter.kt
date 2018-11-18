@@ -1,10 +1,13 @@
 package com.example.shashankmohabia.atithi.Core.Tour
 
+import android.content.Context
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
+import com.bumptech.glide.Glide
 import com.example.shashankmohabia.atithi.R
 
 
@@ -20,6 +23,7 @@ import kotlinx.android.synthetic.main.tour_fragment_item.view.*
  * TODO: Replace the implementation with code for your data type.
  */
 class MyItemRecyclerViewAdapter(
+        private val context: Context,
         private val mValues: MutableList<Place>,
         private val mListener: OnListFragmentInteractionListener?)
     : RecyclerView.Adapter<MyItemRecyclerViewAdapter.ViewHolder>() {
@@ -45,6 +49,7 @@ class MyItemRecyclerViewAdapter(
         val item = mValues[position]
         holder.place_name.text = item.name
         holder.place_location.text = holder.getPlaceString(item.city, item.state)
+        Glide.with(context).load(item.image_link).into(holder.place_image)
 
         with(holder.mView) {
             tag = item
@@ -57,6 +62,7 @@ class MyItemRecyclerViewAdapter(
     inner class ViewHolder(val mView: View) : RecyclerView.ViewHolder(mView) {
         val place_name: TextView = mView.place_name
         val place_location: TextView = mView.place_location
+        var place_image: ImageView = mView.place_image
 
         fun getPlaceString(city: String, state: String): String {
             return "$city, $state"

@@ -45,7 +45,7 @@ class TourFragment : Fragment() {
                     columnCount <= 1 -> LinearLayoutManager(context)
                     else -> GridLayoutManager(context, columnCount)
                 }
-                adapter = MyItemRecyclerViewAdapter(placeList, listener)
+                adapter = MyItemRecyclerViewAdapter(context,placeList, listener)
             }
         }
         return view
