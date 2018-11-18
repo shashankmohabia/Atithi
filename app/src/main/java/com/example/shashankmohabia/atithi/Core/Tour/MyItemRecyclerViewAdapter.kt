@@ -43,8 +43,8 @@ class MyItemRecyclerViewAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = mValues[position]
-        //holder.mIdView.text = item.id
-        holder.mContentView.text = item.name
+        holder.place_name.text = item.name
+        holder.place_location.text = holder.getPlaceString(item.city, item.state)
 
         with(holder.mView) {
             tag = item
@@ -55,11 +55,11 @@ class MyItemRecyclerViewAdapter(
     override fun getItemCount(): Int = mValues.size
 
     inner class ViewHolder(val mView: View) : RecyclerView.ViewHolder(mView) {
-        //val mIdView: TextView = mView.item_number
-        val mContentView: TextView = mView.info_text
+        val place_name: TextView = mView.place_name
+        val place_location: TextView = mView.place_location
 
-        override fun toString(): String {
-            return super.toString() + " '" + mContentView.text + "'"
+        fun getPlaceString(city: String, state: String): String {
+            return "$city, $state"
         }
     }
 }
