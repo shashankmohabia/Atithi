@@ -12,8 +12,8 @@ data class SubPlace(
         val subPlacesList: MutableList<SubPlace> = mutableListOf()
         var currentSubPlaceIndex = 0
         fun initializeCurrentSubPlaceIndex(currentSubPlace: String) {
-            val index =  subPlacesList.indexOf(subPlacesList.find { it.name == currentSubPlace })
-            if(index!=-1) currentSubPlaceIndex = index
+            val index = subPlacesList.indexOf(subPlacesList.find { it.name == currentSubPlace })
+            if (index != -1) currentSubPlaceIndex = index
             //Log.d("Shreshth", subPlacesList.indexOf(subPlacesList.find { it.name == currentSubPlace }).toString())
         }
     }

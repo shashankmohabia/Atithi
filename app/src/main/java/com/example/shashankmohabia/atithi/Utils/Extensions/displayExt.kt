@@ -9,3 +9,8 @@ fun AppCompatActivity.removeStatusBar() {
     window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
             WindowManager.LayoutParams.FLAG_FULLSCREEN)
 }
+
+fun Any.toggleVisibility() {
+    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+}
+

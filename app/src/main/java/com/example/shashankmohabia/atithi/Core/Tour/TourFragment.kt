@@ -17,14 +17,14 @@ import com.example.shashankmohabia.atithi.Data.Model_Classes.Place.Companion.pla
 /**
  * A fragment representing a list of Items.
  * Activities containing this fragment MUST implement the
- * [TourFragment.OnListFragmentInteractionListener] interface.
+ * [TourFragment.TourFragmentInteractionListener] interface.
  */
 class TourFragment : Fragment() {
 
     // TODO: Customize parameters
-    private var columnCount = 2
+    private var columnCount = 1
 
-    private var listener: OnListFragmentInteractionListener? = null
+    private var listener: TourFragmentInteractionListener? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,7 +45,7 @@ class TourFragment : Fragment() {
                     columnCount <= 1 -> LinearLayoutManager(context)
                     else -> GridLayoutManager(context, columnCount)
                 }
-                adapter = MyItemRecyclerViewAdapter(placeList, listener)
+                adapter = TourFragmentRecyclerViewAdapter(context,placeList, listener)
             }
         }
         return view
@@ -53,10 +53,10 @@ class TourFragment : Fragment() {
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        if (context is OnListFragmentInteractionListener) {
+        if (context is TourFragmentInteractionListener) {
             listener = context
         } else {
-            throw RuntimeException(context.toString() + " must implement OnListFragmentInteractionListener")
+            throw RuntimeException(context.toString() + " must implement TourFragmentInteractionListener")
         }
     }
 
@@ -76,9 +76,9 @@ class TourFragment : Fragment() {
      * [Communicating with Other Fragments](http://developer.android.com/training/basics/fragments/communicating.html)
      * for more information.
      */
-    interface OnListFragmentInteractionListener {
+    interface TourFragmentInteractionListener {
         // TODO: Update argument type and name
-        fun onListFragmentInteraction(item: Place)
+        fun onTourFragmentInteraction(item: Place)
     }
 
     companion object {

@@ -17,6 +17,8 @@ import com.example.shashankmohabia.atithi.Core.Home.PlaceInformationFragment
 import com.example.shashankmohabia.atithi.Data.API_Classes.APIInteractionListener
 import com.example.shashankmohabia.atithi.Data.API_Classes.getImageLabel
 import com.example.shashankmohabia.atithi.Data.Model_Classes.Place
+import com.example.shashankmohabia.atithi.Data.Model_Classes.Place.Companion.currentPlace
+import com.example.shashankmohabia.atithi.Data.Model_Classes.SubPlace.Companion.subPlacesList
 import com.example.shashankmohabia.atithi.Data.ServerClasses.AnotherServerInteractionListener
 import com.example.shashankmohabia.atithi.Data.ServerClasses.ServerInteractionListener
 import com.example.shashankmohabia.atithi.Data.ServerClasses.getPlaceData
@@ -31,7 +33,7 @@ import org.jetbrains.anko.toast
 class MainActivity :
         AppCompatActivity(),
         NavigationView.OnNavigationItemSelectedListener,
-        TourFragment.OnListFragmentInteractionListener,
+        TourFragment.TourFragmentInteractionListener,
         CommunityFragment.OnListFragmentInteractionListener,
         PlaceInformationFragment.OnFragmentInteractionListener {
 
@@ -98,8 +100,15 @@ class MainActivity :
         }
     }
 
-    override fun onListFragmentInteraction(item: Place) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override fun onTourFragmentInteraction(item: Place) {
+        val progressDialog = getProgressDialog()
+        getPlaceData(item.name + "-" + item.city, "", object : ServerInteractionListener {
+            override fun onReceivePlaceData() {
+                progressDialog.dismiss()
+                navigation_button.visibility = View.VISIBLE
+                startFragmentTransaction(PlaceInformationFragment(), true)
+            }
+        })
     }
 
     override fun onListFragmentInteraction(item: com.example.shashankmohabia.atithi.Core.Community.dummy.DummyContent.DummyItem?) {
@@ -108,23 +117,36 @@ class MainActivity :
 
     private fun setBottomNavBar() {
         startFragmentTransaction(LandingFragment())
+        capture_button.visibility = View.VISIBLE
+        search_object_button.visibility = View.VISIBLE
         bottom_navigation.selectedItemId = R.id.home
         bottom_navigation.setOnNavigationItemSelectedListener {
             when (it.itemId) {
                 R.id.home -> {
-                    startFragmentTransaction(PlaceInformationFragment())
+                    capture_button.visibility = View.VISIBLE
+                    search_object_button.visibility = View.VISIBLE
+                    if (currentPlace != null) {
+                        navigation_button.visibility = View.VISIBLE
+                        startFragmentTransaction(PlaceInformationFragment())
+                    } else startFragmentTransaction(LandingFragment())
                     return@setOnNavigationItemSelectedListener true
                 }
                 R.id.tour -> {
                     val progressDialog = getProgressDialog()
                     getPlaceList(object : AnotherServerInteractionListener {
                         override fun onReceivePlaceList() {
+                            navigation_button.visibility = View.INVISIBLE
+                            capture_button.visibility = View.INVISIBLE
+                            search_object_button.visibility = View.INVISIBLE
                             progressDialog.dismiss()
                             startFragmentTransaction(TourFragment())
                         }
                     })
                 }
                 R.id.community -> {
+                    navigation_button.visibility = View.INVISIBLE
+                    capture_button.visibility = View.INVISIBLE
+                    search_object_button.visibility = View.INVISIBLE
                     startFragmentTransaction(CommunityFragment())
                     return@setOnNavigationItemSelectedListener true
                 }
@@ -163,25 +185,18 @@ class MainActivity :
         // Handle navigation view item clicks here.
         when (item.itemId) {
             R.id.nav_camera -> {
-                // Handle the camera action
             }
             R.id.nav_gallery -> {
-
             }
             R.id.nav_slideshow -> {
-
             }
             R.id.nav_manage -> {
-
             }
             R.id.nav_share -> {
-
             }
             R.id.nav_send -> {
-
             }
         }
-
         drawer_layout.closeDrawer(GravityCompat.START)
         return true
     }

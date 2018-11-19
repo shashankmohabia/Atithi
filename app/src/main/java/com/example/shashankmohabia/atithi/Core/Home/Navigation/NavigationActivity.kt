@@ -3,6 +3,7 @@ package com.example.shashankmohabia.atithi.Core.Home.Navigation
 import android.app.usage.UsageEvents.Event.NONE
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.design.widget.Snackbar
 import android.view.Menu
 import android.view.MenuItem
 import at.lukle.clickableareasimage.ClickableArea
@@ -81,12 +82,17 @@ class NavigationActivity : AppCompatActivity(), OnClickableAreaClickedListener<C
             getDialogueBox(subPlacesList[currentSubPlaceIndex].name, subPlacesList[currentSubPlaceIndex].description)
         }
 
-        navigation_direction.setOnClickListener {
+        /*navigation_direction.setOnClickListener {
             if (currentSubPlaceIndex == subPlacesList.size - 1) {
                 toast("This is the last spot")
             } else {
                 getDialogueBox("Next Spot - ${subPlacesList[currentSubPlaceIndex + 1].name}", subPlacesList[currentSubPlaceIndex].direction_instruction)
             }
+        }*/
+
+        navigation_360view.setOnClickListener {
+            Snackbar.make(it, "add a 360 view",
+                    Snackbar.LENGTH_LONG).setAction("Action", null).show()
         }
     }
 
