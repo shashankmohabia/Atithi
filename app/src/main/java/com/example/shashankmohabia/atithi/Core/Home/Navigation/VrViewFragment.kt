@@ -11,9 +11,9 @@ import android.view.ViewGroup
 import com.example.shashankmohabia.atithi.R
 import com.google.vr.sdk.widgets.pano.VrPanoramaView
 import android.system.Os.shutdown
-
-
-
+import android.os.AsyncTask.execute
+import android.R.string.cancel
+import android.support.annotation.Nullable
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -31,7 +31,8 @@ private const val ARG_PARAM2 = "param2"
  *
  */
 class VrViewFragment : Fragment() {
-    private var panoWidgetView: VrPanoramaView? = null
+    lateinit var panoWidgetView: VrPanoramaView
+    private var backgroundImageLoaderTask: ImageLoaderTask? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -55,4 +56,31 @@ class VrViewFragment : Fragment() {
         panoWidgetView.shutdown()
         super.onDestroy()
     }
+
+    @Synchronized
+    private fun loadPanoImage() {
+        var task = backgroundImageLoaderTask
+        if (task != null && !task.isCancelled()) {
+            // Cancel any task from a previous loading.
+            task.cancel(true)
+        }
+
+        // pass in the name of the image to load from assets.
+        val viewOptions = VrPanoramaView.Options()
+        viewOptions.inputType = VrPanoramaView.Options.TYPE_STEREO_OVER_UNDER
+
+        // use the name of the image in the assets/ directory.
+        val panoImageName = "converted.jpg"
+
+        // create the task passing the widget view and call execute to start.
+        task = ImageLoaderTask(panoWidgetView, viewOptions, panoImageName)
+        task.execute(activity!!.assets)
+        backgroundImageLoaderTask = task
+    }
+
+    override fun onActivityCreated(@Nullable savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        loadPanoImage()
+    }
 }
+

@@ -13,6 +13,7 @@ import android.view.View
 import com.example.shashankmohabia.atithi.Core.Community.CommunityFragment
 import com.example.shashankmohabia.atithi.Core.Tour.TourFragment
 import com.example.shashankmohabia.atithi.Core.Home.LandingFragment
+import com.example.shashankmohabia.atithi.Core.Home.Navigation.VrViewFragment
 import com.example.shashankmohabia.atithi.Core.Home.PlaceInformationFragment
 import com.example.shashankmohabia.atithi.Data.API_Classes.APIInteractionListener
 import com.example.shashankmohabia.atithi.Data.API_Classes.getImageLabel
@@ -116,7 +117,7 @@ class MainActivity :
     }
 
     private fun setBottomNavBar() {
-        startFragmentTransaction(LandingFragment())
+        startFragmentTransaction(VrViewFragment())
         capture_button.visibility = View.VISIBLE
         search_object_button.visibility = View.VISIBLE
         bottom_navigation.selectedItemId = R.id.home
