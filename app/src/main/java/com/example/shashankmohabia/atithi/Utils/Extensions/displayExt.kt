@@ -1,8 +1,12 @@
 package com.example.shashankmohabia.atithi.Utils.Extensions
 
 import android.support.v7.app.AppCompatActivity
+import android.util.Log
+import android.view.ViewGroup
 import android.view.Window
 import android.view.WindowManager
+import android.widget.FrameLayout
+
 
 fun AppCompatActivity.removeStatusBar() {
     requestWindowFeature(Window.FEATURE_NO_TITLE)
@@ -12,5 +16,16 @@ fun AppCompatActivity.removeStatusBar() {
 
 fun Any.toggleVisibility() {
     TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+}
+
+fun ViewGroup.removeAllRectangles() {
+    for (j in 0 until this.childCount) {
+        for (i in 0 until this.childCount) {
+            if (this.getChildAt(i) is FrameLayout) {
+                //Log.d("asdfghjkl", "asdfghjkl")
+                this.removeView(this.getChildAt(i))
+            }
+        }
+    }
 }
 

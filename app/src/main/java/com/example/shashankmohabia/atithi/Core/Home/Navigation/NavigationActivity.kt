@@ -16,7 +16,6 @@ import kotlinx.android.synthetic.main.navigation_main.*
 import kotlinx.android.synthetic.main.navigation_content.*
 import org.jetbrains.anko.toast
 import android.support.constraint.ConstraintLayout
-import android.view.ViewGroup
 import android.widget.FrameLayout
 import com.example.shashankmohabia.atithi.Utils.Extensions.removeAllRectangles
 
@@ -37,7 +36,8 @@ class NavigationActivity : AppCompatActivity() {
 
     }
 
-    private fun updateView(frameLayout: FrameLayout? = null) {
+    private fun updateView() {
+        parent_layout.removeAllRectangles()
         Glide.with(this).load(subPlacesList[currentSubPlaceIndex].image_link).into(navigation_image)
         title = subPlacesList[currentSubPlaceIndex].name
         drawRectangle()
@@ -55,7 +55,7 @@ class NavigationActivity : AppCompatActivity() {
                                 toast("This is the end to the tour!")
                             } else {
                                 currentSubPlaceIndex++
-                                updateView(this)
+                                updateView()
                             }
                         }
                         x = link.value.first.toFloat()
