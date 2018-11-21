@@ -98,7 +98,6 @@ class NavigationActivity : AppCompatActivity() {
         else {
             fragmentManager.popBackStack()
         }
-
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
