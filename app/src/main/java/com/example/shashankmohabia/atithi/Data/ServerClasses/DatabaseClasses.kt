@@ -54,11 +54,14 @@ fun AppCompatActivity.getPlaceData(place: String, subplace: String, callback: Se
 
 fun getDirectionLinks(directionString: String): MutableMap<String, Pair<Int, Int>> {
     val directionLinkMap: MutableMap<String, Pair<Int, Int>> = mutableMapOf()
-    val list = directionString.split("&")
-    for (item in list) {
-        val s = item.split("-")
-        directionLinkMap[s[0]] = Pair(s[1].toInt(), s[2].toInt())
+    if (directionString != "") {
+        val list = directionString.split("&")
+        for (item in list) {
+            val s = item.split("-")
+            directionLinkMap[s[0]] = Pair(s[1].toInt(), s[2].toInt())
+        }
     }
+    //Log.d("qwertyuiop", directionLinkMap.size.toString())
     return directionLinkMap
 }
 
