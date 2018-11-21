@@ -17,6 +17,7 @@ import kotlinx.android.synthetic.main.navigation_content.*
 import org.jetbrains.anko.toast
 import android.support.constraint.ConstraintLayout
 import android.widget.FrameLayout
+import com.example.shashankmohabia.atithi.Data.Model_Classes.SubPlace.Companion.updateCurrentSubPlaceIndex
 import com.example.shashankmohabia.atithi.Utils.Extensions.removeAllRectangles
 
 class NavigationActivity : AppCompatActivity() {
@@ -51,12 +52,8 @@ class NavigationActivity : AppCompatActivity() {
                         background = resources.getDrawable(R.drawable.rectangle)
                         layoutParams = ConstraintLayout.LayoutParams(200, 200)
                         setOnClickListener {
-                            if (currentSubPlaceIndex == subPlacesList.size - 1) {
-                                toast("This is the end to the tour!")
-                            } else {
-                                currentSubPlaceIndex++
+                                updateCurrentSubPlaceIndex(link.key)
                                 updateView()
-                            }
                         }
                         x = link.value.first.toFloat()
                         y = link.value.second.toFloat()
