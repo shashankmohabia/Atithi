@@ -94,8 +94,11 @@ class MainActivity :
         }
 
         if (requestCode == SEARCH_OBJECT_REQUEST_CODE && resultCode == RESULT_OK) {
-            val TestString = "Shashank Mohabia"
-            val url = "https://www.google.com/search?hl=en&site=imghp&tbm=isch&source=hp&q=" + TestString
+            val imageBitmap = data!!.extras.get("data") as Bitmap
+            val imageBitArray = imageBitmap.toByteArray(imageBitmap)
+            //toast(imageBitArray.toString())
+            val TestString = "encoded_image=$imageBitArray"
+            val url = "https://www.google.com/imghp?sbi=1&" + TestString
             searchGoogleImages(url)
         }
     }

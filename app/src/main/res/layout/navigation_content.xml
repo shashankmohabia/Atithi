@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/parent_layout"
+    android:layout_marginTop="?attr/actionBarSize"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <android.support.v7.widget.AppCompatImageView
+    <ImageView
         android:id="@+id/navigation_image"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:adjustViewBounds="true"
         android:src="@drawable/mehrangarh"
-        android:contentDescription="@string/todo"
-        android:scaleType="centerCrop" />
+        android:contentDescription="@string/todo"/>
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/navigation_description"
