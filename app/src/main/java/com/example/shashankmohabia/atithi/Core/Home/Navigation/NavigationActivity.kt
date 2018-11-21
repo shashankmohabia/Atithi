@@ -16,7 +16,9 @@ import kotlinx.android.synthetic.main.navigation_main.*
 import kotlinx.android.synthetic.main.navigation_content.*
 import org.jetbrains.anko.toast
 import android.support.constraint.ConstraintLayout
+import android.view.ViewGroup
 import android.widget.FrameLayout
+import com.example.shashankmohabia.atithi.Utils.Extensions.removeAllRectangles
 
 class NavigationActivity : AppCompatActivity() {
 
@@ -35,7 +37,7 @@ class NavigationActivity : AppCompatActivity() {
 
     }
 
-    private fun updateView() {
+    private fun updateView(frameLayout: FrameLayout? = null) {
         Glide.with(this).load(subPlacesList[currentSubPlaceIndex].image_link).into(navigation_image)
         title = subPlacesList[currentSubPlaceIndex].name
         drawRectangle()
@@ -43,22 +45,24 @@ class NavigationActivity : AppCompatActivity() {
 
 
     private fun drawRectangle() {
-        parent_layout.addView(
-                FrameLayout(this).apply {
-                    background = resources.getDrawable(R.drawable.rectangle)
-                    layoutParams = ConstraintLayout.LayoutParams(200, 200)
-                    setOnClickListener {
-                        if (currentSubPlaceIndex == subPlacesList.size - 1) {
-                            toast("This is the end to the tour!")
-                        } else {
-                            currentSubPlaceIndex++
-                            updateView()
+        for (link in subPlacesList[currentSubPlaceIndex].direction_instruction) {
+            parent_layout.addView(
+                    FrameLayout(this).apply {
+                        background = resources.getDrawable(R.drawable.rectangle)
+                        layoutParams = ConstraintLayout.LayoutParams(200, 200)
+                        setOnClickListener {
+                            if (currentSubPlaceIndex == subPlacesList.size - 1) {
+                                toast("This is the end to the tour!")
+                            } else {
+                                currentSubPlaceIndex++
+                                updateView(this)
+                            }
                         }
+                        x = link.value.first.toFloat()
+                        y = link.value.second.toFloat()
                     }
-                    x = 500F
-                    y = 500F
-                }
-        )
+            )
+        }
     }
 
     private fun setFloatingButtons() {
