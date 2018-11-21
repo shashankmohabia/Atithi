@@ -67,10 +67,10 @@ class VrViewFragment : Fragment() {
 
         // pass in the name of the image to load from assets.
         val viewOptions = VrPanoramaView.Options()
-        viewOptions.inputType = VrPanoramaView.Options.TYPE_STEREO_OVER_UNDER
+        viewOptions.inputType = VrPanoramaView.Options.TYPE_MONO
 
         // use the name of the image in the assets/ directory.
-        val panoImageName = "converted.jpg"
+        val panoImageName = "PANO_20181118_141826_0.jpg"
 
         // create the task passing the widget view and call execute to start.
         task = ImageLoaderTask(panoWidgetView, viewOptions, panoImageName)
