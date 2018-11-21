@@ -16,10 +16,12 @@ fun AppCompatActivity.startFragmentTransaction(fragment: Fragment, stateLossAllo
     if (!stateLossAllowed) {
         supportFragmentManager.beginTransaction()
                 .replace(R.id.mainFrame, fragment)
+                .addToBackStack(null)
                 .commit()
     } else {
         supportFragmentManager.beginTransaction()
                 .replace(R.id.mainFrame, fragment)
+                .addToBackStack(null)
                 .commitAllowingStateLoss()
     }
 }

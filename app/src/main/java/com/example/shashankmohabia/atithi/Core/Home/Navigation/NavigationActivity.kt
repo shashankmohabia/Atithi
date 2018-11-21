@@ -91,8 +91,14 @@ class NavigationActivity : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
-        super.onBackPressed()
-        currentSubPlaceIndex = 0
+        if(fragmentManager.backStackEntryCount == 0) {
+            currentSubPlaceIndex = 0
+            super.onBackPressed()
+        }
+        else {
+            fragmentManager.popBackStack()
+        }
+
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
