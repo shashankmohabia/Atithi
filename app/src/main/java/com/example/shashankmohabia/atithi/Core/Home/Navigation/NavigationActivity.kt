@@ -71,19 +71,8 @@ class NavigationActivity : AppCompatActivity(), _360ViewFragment.On360ViewFragme
             getDialogueBox(subPlacesList[currentSubPlaceIndex].name, subPlacesList[currentSubPlaceIndex].description)
         }
 
-        /*navigation_direction.setOnClickListener {
-            if (currentSubPlaceIndex == subPlacesList.size - 1) {
-                toast("This is the last spot")
-            } else {
-                getDialogueBox("Next Spot - ${subPlacesList[currentSubPlaceIndex + 1].name}", subPlacesList[currentSubPlaceIndex].direction_instruction)
-            }
-        }*/
-
         navigation_360view.setOnClickListener {
             this.setContentView(R.layout._360_view_fragment)
-            //startFragmentTransaction(_360ViewFragment(), navigation_frame)
-            /*Snackbar.make(it, "add a 360 view",
-                    Snackbar.LENGTH_LONG).setAction("Action", null).show()*/
         }
     }
 
