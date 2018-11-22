@@ -1,7 +1,5 @@
 package com.example.shashankmohabia.atithi.Core.Home.Navigation
 
-import android.content.Context
-import android.net.Uri
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
@@ -10,9 +8,6 @@ import android.view.ViewGroup
 
 import com.example.shashankmohabia.atithi.R
 import com.google.vr.sdk.widgets.pano.VrPanoramaView
-import android.system.Os.shutdown
-import android.os.AsyncTask.execute
-import android.R.string.cancel
 import android.support.annotation.Nullable
 
 
@@ -21,22 +16,13 @@ import android.support.annotation.Nullable
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Activities that contain this fragment must implement the
- * [VrViewFragment.OnFragmentInteractionListener] interface
- * to handle interaction events.
- * Use the [VrViewFragment.newInstance] factory method to
- * create an instance of this fragment.
- *
- */
 class VrViewFragment : Fragment() {
     lateinit var panoWidgetView: VrPanoramaView
     private var backgroundImageLoaderTask: ImageLoaderTask? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        val v = inflater.inflate(R.layout.fragment_vr_view, container, false)
+        val v = inflater.inflate(R.layout.vr_view_fragment, container, false)
         panoWidgetView = v.findViewById(R.id.vr_view)
         return v
     }
