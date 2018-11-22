@@ -16,6 +16,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:adjustViewBounds="true"
+            android:scaleType="centerCrop"
             android:contentDescription="@string/todo"
             android:src="@drawable/mehrangarh" />
 
@@ -30,6 +31,7 @@
             android:src="@drawable/ic_info_outline"
             app:layout_constraintBottom_toTopOf="@+id/navigation_360view"
             app:layout_constraintEnd_toEndOf="parent" />
+
 
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/navigation_360view"
