@@ -1,9 +1,9 @@
 package com.example.shashankmohabia.atithi.Core.Home.Navigation
 
 import android.app.usage.UsageEvents.Event.NONE
+import android.net.Uri
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.support.design.widget.Snackbar
 import android.view.Menu
 import android.view.MenuItem
 import com.bumptech.glide.Glide
@@ -14,13 +14,18 @@ import com.example.shashankmohabia.atithi.Utils.Extensions.getDialogueBox
 import com.example.shashankmohabia.atithi.Utils.Extensions.removeStatusBar
 import kotlinx.android.synthetic.main.navigation_main.*
 import kotlinx.android.synthetic.main.navigation_content.*
-import org.jetbrains.anko.toast
 import android.support.constraint.ConstraintLayout
 import android.widget.FrameLayout
 import com.example.shashankmohabia.atithi.Data.Model_Classes.SubPlace.Companion.updateCurrentSubPlaceIndex
 import com.example.shashankmohabia.atithi.Utils.Extensions.removeAllRectangles
+import org.jetbrains.anko.contentView
+import android.content.Intent
+import android.os.Build
+import android.util.Log
+import android.view.ViewGroup
 
-class NavigationActivity : AppCompatActivity() {
+
+class NavigationActivity : AppCompatActivity(), _360ViewFragment.On360ViewFragmentInteractionListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,8 +57,8 @@ class NavigationActivity : AppCompatActivity() {
                         background = resources.getDrawable(R.drawable.rectangle)
                         layoutParams = ConstraintLayout.LayoutParams(200, 200)
                         setOnClickListener {
-                                updateCurrentSubPlaceIndex(link.key)
-                                updateView()
+                            updateCurrentSubPlaceIndex(link.key)
+                            updateView()
                         }
                         x = link.value.first.toFloat()
                         y = link.value.second.toFloat()
@@ -77,8 +82,10 @@ class NavigationActivity : AppCompatActivity() {
         }*/
 
         navigation_360view.setOnClickListener {
-            Snackbar.make(it, "add a 360 view",
-                    Snackbar.LENGTH_LONG).setAction("Action", null).show()
+            this.setContentView(R.layout.fragment__360_view)
+            //startFragmentTransaction(_360ViewFragment(), navigation_frame)
+            /*Snackbar.make(it, "add a 360 view",
+                    Snackbar.LENGTH_LONG).setAction("Action", null).show()*/
         }
     }
 
@@ -91,12 +98,15 @@ class NavigationActivity : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
-        if(fragmentManager.backStackEntryCount == 0) {
-            currentSubPlaceIndex = 0
+        if ((findViewById<ViewGroup>(android.R.id.content)).getChildAt(0).id == R.id._360Frame) {
+            intent = intent
+            intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
+            finish()
+            overridePendingTransition(0, 0)
+            startActivity(intent)
+            overridePendingTransition(0, 0)
+        } else {
             super.onBackPressed()
-        }
-        else {
-            fragmentManager.popBackStack()
         }
     }
 
@@ -104,6 +114,10 @@ class NavigationActivity : AppCompatActivity() {
         currentSubPlaceIndex = item.itemId.toString().toInt()
         updateView()
         return true
+    }
+
+    override fun on360ViewFragmentInteraction(uri: Uri) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 }
 
