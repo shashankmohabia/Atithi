@@ -32,7 +32,7 @@ class _360ViewFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment__360_view, container, false)
+        return inflater.inflate(R.layout._360_view_fragment, container, false)
     }
 
     // TODO: Rename method, update argument and hook method into UI event

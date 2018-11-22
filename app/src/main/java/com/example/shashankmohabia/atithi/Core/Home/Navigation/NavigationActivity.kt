@@ -18,11 +18,9 @@ import android.support.constraint.ConstraintLayout
 import android.widget.FrameLayout
 import com.example.shashankmohabia.atithi.Data.Model_Classes.SubPlace.Companion.updateCurrentSubPlaceIndex
 import com.example.shashankmohabia.atithi.Utils.Extensions.removeAllRectangles
-import org.jetbrains.anko.contentView
 import android.content.Intent
-import android.os.Build
-import android.util.Log
 import android.view.ViewGroup
+import com.example.shashankmohabia.atithi.Utils.Extensions.restartActivity
 
 
 class NavigationActivity : AppCompatActivity(), _360ViewFragment.On360ViewFragmentInteractionListener {
@@ -82,7 +80,7 @@ class NavigationActivity : AppCompatActivity(), _360ViewFragment.On360ViewFragme
         }*/
 
         navigation_360view.setOnClickListener {
-            this.setContentView(R.layout.fragment__360_view)
+            this.setContentView(R.layout._360_view_fragment)
             //startFragmentTransaction(_360ViewFragment(), navigation_frame)
             /*Snackbar.make(it, "add a 360 view",
                     Snackbar.LENGTH_LONG).setAction("Action", null).show()*/
@@ -99,12 +97,7 @@ class NavigationActivity : AppCompatActivity(), _360ViewFragment.On360ViewFragme
 
     override fun onBackPressed() {
         if ((findViewById<ViewGroup>(android.R.id.content)).getChildAt(0).id == R.id._360Frame) {
-            intent = intent
-            intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
-            finish()
-            overridePendingTransition(0, 0)
-            startActivity(intent)
-            overridePendingTransition(0, 0)
+            restartActivity()
         } else {
             super.onBackPressed()
         }
@@ -120,4 +113,3 @@ class NavigationActivity : AppCompatActivity(), _360ViewFragment.On360ViewFragme
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 }
-

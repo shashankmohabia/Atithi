@@ -27,6 +27,15 @@ fun AppCompatActivity.startFragmentTransaction(fragment: Fragment, frame: FrameL
     }
 }
 
+fun AppCompatActivity.restartActivity() {
+    intent = intent
+    intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
+    finish()
+    overridePendingTransition(0, 0)
+    startActivity(intent)
+    overridePendingTransition(0, 0)
+}
+
 fun AppCompatActivity.getCameraIntent(REQUEST_CODE: Int) {
     Intent(MediaStore.ACTION_IMAGE_CAPTURE).also { takePictureIntent ->
         takePictureIntent.resolveActivity(packageManager)?.also {
