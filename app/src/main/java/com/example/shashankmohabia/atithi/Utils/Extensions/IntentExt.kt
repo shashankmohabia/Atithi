@@ -10,18 +10,30 @@ import com.example.shashankmohabia.atithi.R
 import android.R.attr.fragment
 import android.os.Bundle
 import android.os.Parcelable
+import android.widget.FrameLayout
 
 
-fun AppCompatActivity.startFragmentTransaction(fragment: Fragment, stateLossAllowed: Boolean = false, data: Any? = null) {
+fun AppCompatActivity.startFragmentTransaction(fragment: Fragment, frame: FrameLayout, stateLossAllowed: Boolean = false, data: Any? = null) {
     if (!stateLossAllowed) {
         supportFragmentManager.beginTransaction()
-                .replace(R.id.mainFrame, fragment)
+                .replace(frame.id, fragment)
+                .addToBackStack(null)
                 .commit()
     } else {
         supportFragmentManager.beginTransaction()
-                .replace(R.id.mainFrame, fragment)
+                .replace(frame.id, fragment)
+                .addToBackStack(null)
                 .commitAllowingStateLoss()
     }
+}
+
+fun AppCompatActivity.restartActivity() {
+    intent = intent
+    intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
+    finish()
+    overridePendingTransition(0, 0)
+    startActivity(intent)
+    overridePendingTransition(0, 0)
 }
 
 fun AppCompatActivity.getCameraIntent(REQUEST_CODE: Int) {

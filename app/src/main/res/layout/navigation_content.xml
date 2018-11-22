@@ -1,52 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:id="@+id/navigation_frame"
+    android:layout_marginTop="?attr/actionBarSize">
 
-    <android.support.v7.widget.AppCompatImageView
-        android:id="@+id/navigation_image"
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/parent_layout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:adjustViewBounds="true"
-        android:src="@drawable/mehrangarh"
-        android:contentDescription="@string/todo"
-        android:scaleType="centerCrop" />
+        android:layout_height="match_parent">
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/navigation_description"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginBottom="8dp"
-        android:backgroundTint="@color/colorSecondaryTextDefaultMaterialLight"
-        android:src="@drawable/ic_info_outline"
-        app:layout_constraintBottom_toTopOf="@+id/navigation_360view"
-        app:layout_constraintEnd_toEndOf="parent" />
+        <ImageView
+            android:id="@+id/navigation_image"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:adjustViewBounds="true"
+            android:contentDescription="@string/todo"
+            android:src="@drawable/mehrangarh" />
 
-    <!--<android.support.design.widget.FloatingActionButton
-        android:id="@+id/navigation_direction"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginBottom="8dp"
-        android:backgroundTint="@color/colorSecondaryTextDefaultMaterialLight"
-        android:src="@drawable/ic_directions"
-        app:layout_constraintBottom_toBottomOf="@+id/navigation_image"
-        app:layout_constraintEnd_toEndOf="parent" />-->
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/navigation_description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginBottom="8dp"
+            android:backgroundTint="@color/colorSecondaryTextDefaultMaterialLight"
+            android:src="@drawable/ic_info_outline"
+            app:layout_constraintBottom_toTopOf="@+id/navigation_360view"
+            app:layout_constraintEnd_toEndOf="parent" />
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/navigation_360view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginBottom="8dp"
-        android:backgroundTint="@color/colorSecondaryTextDefaultMaterialLight"
-        android:src="@drawable/ic_360view"
-        app:layout_constraintBottom_toBottomOf="@+id/navigation_image"
-        app:layout_constraintEnd_toEndOf="parent" />
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/navigation_360view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginBottom="8dp"
+            android:backgroundTint="@color/colorSecondaryTextDefaultMaterialLight"
+            android:src="@drawable/ic_360view"
+            app:layout_constraintBottom_toBottomOf="@+id/navigation_image"
+            app:layout_constraintEnd_toEndOf="parent" />
 
-</android.support.constraint.ConstraintLayout>
+    </android.support.constraint.ConstraintLayout>
+</FrameLayout>

@@ -1,12 +1,11 @@
 package com.example.shashankmohabia.atithi.Core.Home.Navigation
 
 import android.app.usage.UsageEvents.Event.NONE
+import android.net.Uri
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.support.design.widget.Snackbar
 import android.view.Menu
 import android.view.MenuItem
-import at.lukle.clickableareasimage.ClickableArea
 import com.bumptech.glide.Glide
 import com.example.shashankmohabia.atithi.Data.Model_Classes.SubPlace.Companion.currentSubPlaceIndex
 import com.example.shashankmohabia.atithi.Data.Model_Classes.SubPlace.Companion.subPlacesList
@@ -15,14 +14,16 @@ import com.example.shashankmohabia.atithi.Utils.Extensions.getDialogueBox
 import com.example.shashankmohabia.atithi.Utils.Extensions.removeStatusBar
 import kotlinx.android.synthetic.main.navigation_main.*
 import kotlinx.android.synthetic.main.navigation_content.*
-import org.jetbrains.anko.toast
-import at.lukle.clickableareasimage.ClickableAreasImage
-import at.lukle.clickableareasimage.OnClickableAreaClickedListener
-import uk.co.senab.photoview.PhotoViewAttacher
+import android.support.constraint.ConstraintLayout
+import android.widget.FrameLayout
+import com.example.shashankmohabia.atithi.Data.Model_Classes.SubPlace.Companion.updateCurrentSubPlaceIndex
+import com.example.shashankmohabia.atithi.Utils.Extensions.removeAllRectangles
+import android.content.Intent
+import android.view.ViewGroup
+import com.example.shashankmohabia.atithi.Utils.Extensions.restartActivity
 
 
-class NavigationActivity : AppCompatActivity(), OnClickableAreaClickedListener<ClickableAreasImage> {
-
+class NavigationActivity : AppCompatActivity(), _360ViewFragment.On360ViewFragmentInteractionListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,43 +38,31 @@ class NavigationActivity : AppCompatActivity(), OnClickableAreaClickedListener<C
 
         setFloatingButtons()
 
-        setImageViewClickListener()
-
-        //setImageViewClicks()
-
     }
-
-  /*  private fun setImageViewClicks() {
-        val clickableAreasImage = ClickableAreasImage(PhotoViewAttacher(navigation_image), this)
-
-        // Initialize your clickable area list
-        val clickableAreas = mutableListOf<ClickableArea<Any>>()
-
-        // Define your clickable areas
-        // parameter values (pixels): (x coordinate, y coordinate, width, height) and assign an object to it
-        clickableAreas.add(ClickableArea(100, 100, 50, 50, "Shashank"))
-
-        clickableAreasImage.clickableAreas = clickableAreas
-    }*/
-
-    override fun onClickableAreaTouched(block: ClickableAreasImage?) {
-        toast(block.toString())
-    }
-
-     private fun setImageViewClickListener() {
-         navigation_image.setOnClickListener {
-             if (currentSubPlaceIndex == subPlacesList.size - 1) {
-                 toast("This is the end to the tour!")
-             } else {
-                 currentSubPlaceIndex++
-                 updateView()
-             }
-         }
-     }
 
     private fun updateView() {
+        parent_layout.removeAllRectangles()
         Glide.with(this).load(subPlacesList[currentSubPlaceIndex].image_link).into(navigation_image)
         title = subPlacesList[currentSubPlaceIndex].name
+        drawRectangle()
+    }
+
+
+    private fun drawRectangle() {
+        for (link in subPlacesList[currentSubPlaceIndex].direction_instruction) {
+            parent_layout.addView(
+                    FrameLayout(this).apply {
+                        background = resources.getDrawable(R.drawable.rectangle)
+                        layoutParams = ConstraintLayout.LayoutParams(200, 200)
+                        setOnClickListener {
+                            updateCurrentSubPlaceIndex(link.key)
+                            updateView()
+                        }
+                        x = link.value.first.toFloat()
+                        y = link.value.second.toFloat()
+                    }
+            )
+        }
     }
 
     private fun setFloatingButtons() {
@@ -82,17 +71,8 @@ class NavigationActivity : AppCompatActivity(), OnClickableAreaClickedListener<C
             getDialogueBox(subPlacesList[currentSubPlaceIndex].name, subPlacesList[currentSubPlaceIndex].description)
         }
 
-        /*navigation_direction.setOnClickListener {
-            if (currentSubPlaceIndex == subPlacesList.size - 1) {
-                toast("This is the last spot")
-            } else {
-                getDialogueBox("Next Spot - ${subPlacesList[currentSubPlaceIndex + 1].name}", subPlacesList[currentSubPlaceIndex].direction_instruction)
-            }
-        }*/
-
         navigation_360view.setOnClickListener {
-            Snackbar.make(it, "add a 360 view",
-                    Snackbar.LENGTH_LONG).setAction("Action", null).show()
+            this.setContentView(R.layout._360_view_fragment)
         }
     }
 
@@ -105,8 +85,11 @@ class NavigationActivity : AppCompatActivity(), OnClickableAreaClickedListener<C
     }
 
     override fun onBackPressed() {
-        super.onBackPressed()
-        currentSubPlaceIndex = 0
+        if ((findViewById<ViewGroup>(android.R.id.content)).getChildAt(0).id == R.id._360Frame) {
+            restartActivity()
+        } else {
+            super.onBackPressed()
+        }
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -114,5 +97,8 @@ class NavigationActivity : AppCompatActivity(), OnClickableAreaClickedListener<C
         updateView()
         return true
     }
-}
 
+    override fun on360ViewFragmentInteraction(uri: Uri) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+}

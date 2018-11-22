@@ -8,7 +8,7 @@ import android.util.Log
 import com.example.shashankmohabia.atithi.Data.Model_Classes.Place.Companion.currentPlace
 import com.example.shashankmohabia.atithi.Data.Model_Classes.Place.Companion.placeList
 import com.example.shashankmohabia.atithi.Data.Model_Classes.SubPlace
-import com.example.shashankmohabia.atithi.Data.Model_Classes.SubPlace.Companion.initializeCurrentSubPlaceIndex
+import com.example.shashankmohabia.atithi.Data.Model_Classes.SubPlace.Companion.updateCurrentSubPlaceIndex
 import com.example.shashankmohabia.atithi.Data.Model_Classes.SubPlace.Companion.subPlacesList
 
 fun AppCompatActivity.getPlaceData(place: String, subplace: String, callback: ServerInteractionListener) {
@@ -38,18 +38,31 @@ fun AppCompatActivity.getPlaceData(place: String, subplace: String, callback: Se
                                 document.data["name"].toString(),
                                 document.data["description"].toString(),
                                 document.data["image_link"].toString(),
-                                document.data["direction_instruction"].toString()
+                                getDirectionLinks(document.data["direction_instruction"].toString())
                         )
                         subPlacesList.add(subPlace)
-                        Log.d("eventlog", document.id + " => " + document.data)
+                        //Log.d("direction", subPlace.name + " " + subPlace.direction_instruction.size.toString())
                     }
                 } else {
                     Log.d(TAG, "Error getting documents: ", task.exception)
                 }
                 subPlacesList.reverse()
-                initializeCurrentSubPlaceIndex(subplace)
+                updateCurrentSubPlaceIndex(subplace)
                 callback.onReceivePlaceData()
             }
+}
+
+fun getDirectionLinks(directionString: String): MutableMap<String, Pair<Int, Int>> {
+    val directionLinkMap: MutableMap<String, Pair<Int, Int>> = mutableMapOf()
+    if (directionString != "") {
+        val list = directionString.split("&")
+        for (item in list) {
+            val s = item.split("-")
+            directionLinkMap[s[0]] = Pair(s[1].toInt(), s[2].toInt())
+        }
+    }
+    //Log.d("qwertyuiop", directionLinkMap.size.toString())
+    return directionLinkMap
 }
 
 fun AppCompatActivity.getPlaceList(callback: AnotherServerInteractionListener): Boolean {

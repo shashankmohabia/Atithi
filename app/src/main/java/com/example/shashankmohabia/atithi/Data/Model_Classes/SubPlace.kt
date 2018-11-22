@@ -6,12 +6,12 @@ data class SubPlace(
         val name: String,
         val description: String,
         val image_link: String,
-        val direction_instruction: String
+        val direction_instruction:  MutableMap<String, Pair<Int, Int>>
 ) {
     companion object {
         val subPlacesList: MutableList<SubPlace> = mutableListOf()
         var currentSubPlaceIndex = 0
-        fun initializeCurrentSubPlaceIndex(currentSubPlace: String) {
+        fun updateCurrentSubPlaceIndex(currentSubPlace: String) {
             val index = subPlacesList.indexOf(subPlacesList.find { it.name == currentSubPlace })
             if (index != -1) currentSubPlaceIndex = index
             //Log.d("Shreshth", subPlacesList.indexOf(subPlacesList.find { it.name == currentSubPlace }).toString())

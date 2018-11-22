@@ -87,7 +87,7 @@ class MainActivity :
                         override fun onReceivePlaceData() {
                             progressDialog.dismiss()
                             navigation_button.visibility = View.VISIBLE
-                            startFragmentTransaction(PlaceInformationFragment(), true)
+                            startFragmentTransaction(PlaceInformationFragment(), mainFrame, true)
                         }
                     })
                 }
@@ -95,8 +95,11 @@ class MainActivity :
         }
 
         if (requestCode == SEARCH_OBJECT_REQUEST_CODE && resultCode == RESULT_OK) {
-            val TestString = "Shashank Mohabia"
-            val url = "https://www.google.com/search?hl=en&site=imghp&tbm=isch&source=hp&q=" + TestString
+            val imageBitmap = data!!.extras.get("data") as Bitmap
+            val imageBitArray = imageBitmap.toByteArray(imageBitmap)
+            //toast(imageBitArray.toString())
+            val TestString = "encoded_image=$imageBitArray"
+            val url = "https://www.google.com/imghp?sbi=1&" + TestString
             searchGoogleImages(url)
         }
     }
@@ -107,7 +110,7 @@ class MainActivity :
             override fun onReceivePlaceData() {
                 progressDialog.dismiss()
                 navigation_button.visibility = View.VISIBLE
-                startFragmentTransaction(PlaceInformationFragment(), true)
+                startFragmentTransaction(PlaceInformationFragment(), mainFrame, true)
             }
         })
     }
@@ -117,7 +120,7 @@ class MainActivity :
     }
 
     private fun setBottomNavBar() {
-        startFragmentTransaction(VrViewFragment())
+        startFragmentTransaction(LandingFragment(),mainFrame)
         capture_button.visibility = View.VISIBLE
         search_object_button.visibility = View.VISIBLE
         bottom_navigation.selectedItemId = R.id.home
@@ -128,8 +131,8 @@ class MainActivity :
                     search_object_button.visibility = View.VISIBLE
                     if (currentPlace != null) {
                         navigation_button.visibility = View.VISIBLE
-                        startFragmentTransaction(PlaceInformationFragment())
-                    } else startFragmentTransaction(LandingFragment())
+                        startFragmentTransaction(PlaceInformationFragment(), mainFrame)
+                    } else startFragmentTransaction(LandingFragment(), mainFrame)
                     return@setOnNavigationItemSelectedListener true
                 }
                 R.id.tour -> {
@@ -140,7 +143,7 @@ class MainActivity :
                             capture_button.visibility = View.INVISIBLE
                             search_object_button.visibility = View.INVISIBLE
                             progressDialog.dismiss()
-                            startFragmentTransaction(TourFragment())
+                            startFragmentTransaction(TourFragment(), mainFrame)
                         }
                     })
                 }
@@ -148,7 +151,7 @@ class MainActivity :
                     navigation_button.visibility = View.INVISIBLE
                     capture_button.visibility = View.INVISIBLE
                     search_object_button.visibility = View.INVISIBLE
-                    startFragmentTransaction(CommunityFragment())
+                    startFragmentTransaction(CommunityFragment(), mainFrame)
                     return@setOnNavigationItemSelectedListener true
                 }
                 else -> {
