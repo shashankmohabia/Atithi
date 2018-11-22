@@ -37,7 +37,7 @@ class VrViewFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         val v = inflater.inflate(R.layout.fragment_vr_view, container, false)
-        panoWidgetView = v.findViewById(R.id.pano_view)
+        panoWidgetView = v.findViewById(R.id.vr_view)
         return v
     }
 

@@ -10,17 +10,14 @@ import com.bumptech.glide.Glide
 import com.example.shashankmohabia.atithi.Data.Model_Classes.SubPlace.Companion.currentSubPlaceIndex
 import com.example.shashankmohabia.atithi.Data.Model_Classes.SubPlace.Companion.subPlacesList
 import com.example.shashankmohabia.atithi.R
-import com.example.shashankmohabia.atithi.Utils.Extensions.getDialogueBox
-import com.example.shashankmohabia.atithi.Utils.Extensions.removeStatusBar
 import kotlinx.android.synthetic.main.navigation_main.*
 import kotlinx.android.synthetic.main.navigation_content.*
 import android.support.constraint.ConstraintLayout
 import android.widget.FrameLayout
 import com.example.shashankmohabia.atithi.Data.Model_Classes.SubPlace.Companion.updateCurrentSubPlaceIndex
-import com.example.shashankmohabia.atithi.Utils.Extensions.removeAllRectangles
 import android.content.Intent
 import android.view.ViewGroup
-import com.example.shashankmohabia.atithi.Utils.Extensions.restartActivity
+import com.example.shashankmohabia.atithi.Utils.Extensions.*
 
 
 class NavigationActivity : AppCompatActivity(), _360ViewFragment.On360ViewFragmentInteractionListener {
@@ -72,7 +69,7 @@ class NavigationActivity : AppCompatActivity(), _360ViewFragment.On360ViewFragme
         }
 
         navigation_360view.setOnClickListener {
-            this.setContentView(R.layout._360_view_fragment)
+           startFragmentTransaction(VrViewFragment(), navigation_frame)
         }
     }
 

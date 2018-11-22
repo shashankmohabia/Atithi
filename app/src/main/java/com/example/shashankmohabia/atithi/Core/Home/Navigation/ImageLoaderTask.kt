@@ -9,18 +9,13 @@ import android.util.Log
 import com.google.vr.sdk.widgets.pano.VrPanoramaView
 
 import java.io.IOException
-import java.io.InputStream
 import java.lang.ref.WeakReference
 
 /**
  * @author Lakshya Garg (garg.2@iitj.ac.in)
  */
 class ImageLoaderTask(view: VrPanoramaView, private val viewOptions: VrPanoramaView.Options, private val assetName: String) : AsyncTask<AssetManager, Void, Bitmap>() {
-    private val viewReference: WeakReference<VrPanoramaView>
-
-    init {
-        viewReference = WeakReference(view)
-    }
+    private val viewReference: WeakReference<VrPanoramaView> = WeakReference(view)
 
 
     override fun doInBackground(vararg params: AssetManager): Bitmap? {
