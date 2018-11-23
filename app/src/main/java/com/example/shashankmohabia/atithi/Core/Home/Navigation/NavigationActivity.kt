@@ -20,7 +20,7 @@ import android.view.ViewGroup
 import com.example.shashankmohabia.atithi.Utils.Extensions.*
 
 
-class NavigationActivity : AppCompatActivity(), _360ViewFragment.On360ViewFragmentInteractionListener {
+class NavigationActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -93,9 +93,5 @@ class NavigationActivity : AppCompatActivity(), _360ViewFragment.On360ViewFragme
         currentSubPlaceIndex = item.itemId.toString().toInt()
         updateView()
         return true
-    }
-
-    override fun on360ViewFragmentInteraction(uri: Uri) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 }
