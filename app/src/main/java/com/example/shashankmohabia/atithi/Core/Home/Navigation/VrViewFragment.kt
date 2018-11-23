@@ -12,13 +12,12 @@ import android.support.annotation.Nullable
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.target.SimpleTarget
 import com.bumptech.glide.request.transition.Transition
+import com.example.shashankmohabia.atithi.Data.Model_Classes.SubPlace.Companion.currentSubPlaceIndex
+import com.example.shashankmohabia.atithi.Data.Model_Classes.SubPlace.Companion.subPlacesList
 import kotlinx.android.synthetic.main.vr_view_fragment.*
 
 class VrViewFragment : Fragment() {
 
-    companion object {
-        private const val VR_IMAGE_URL = "https://firebasestorage.googleapis.com/v0/b/atithi-220608.appspot.com/o/Places%2FMehrangarh_Fort-Jodhpur%2FSubPlaces%2FRang%20Mehal_360.jpg?alt=media&token=adde429c-0bb3-4b69-9122-19479a8c1a22"
-    }
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.vr_view_fragment, container, false)
@@ -52,14 +51,14 @@ class VrViewFragment : Fragment() {
         loadContent()
     }
 
-    private fun loadContent() {
+    fun loadContent() {
         Glide.with(this)
                 .asBitmap()
-                .load(VR_IMAGE_URL)
+                .load(subPlacesList[currentSubPlaceIndex].vr_image_link )
                 .into(object : SimpleTarget<Bitmap>() {
                     override fun onResourceReady(resource: Bitmap, transition: Transition<in Bitmap>?) {
                         val options = VrPanoramaView.Options()
-                        options.inputType = VrPanoramaView.Options.TYPE_MONO
+                        options.inputType = VrPanoramaView.Options.TYPE_STEREO_OVER_UNDER
                         vr_view!!.loadImageFromBitmap(resource, options)
                     }
                 })

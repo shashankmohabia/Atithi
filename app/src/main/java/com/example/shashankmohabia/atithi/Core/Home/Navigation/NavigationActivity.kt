@@ -89,6 +89,7 @@ class NavigationActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         currentSubPlaceIndex = item.itemId.toString().toInt()
         updateView()
+
         return true
     }
 }
