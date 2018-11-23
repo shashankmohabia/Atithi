@@ -69,7 +69,7 @@ class NavigationActivity : AppCompatActivity() {
         }
 
         navigation_360view.setOnClickListener {
-           startFragmentTransaction(VrViewFragment(), navigation_frame)
+           startFragmentTransaction(VrViewFragment(), navigation_frame, string = subPlacesList[currentSubPlaceIndex].name)
         }
     }
 

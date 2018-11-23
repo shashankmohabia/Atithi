@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import com.example.shashankmohabia.atithi.R
 import com.google.vr.sdk.widgets.pano.VrPanoramaView
 import android.support.annotation.Nullable
+import android.util.Log
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -24,6 +25,7 @@ class VrViewFragment : Fragment() {
                               savedInstanceState: Bundle?): View? {
         val v = inflater.inflate(R.layout.vr_view_fragment, container, false)
         panoWidgetView = v.findViewById(R.id.vr_view)
+        Log.d("Sohail", this.arguments?.getString("name"))
         return v
     }
 
@@ -56,7 +58,7 @@ class VrViewFragment : Fragment() {
         viewOptions.inputType = VrPanoramaView.Options.TYPE_MONO
 
         // use the name of the image in the assets/ directory.
-        val panoImageName = "PANO_20181118_141826_0.jpg"
+        val panoImageName = this.arguments?.getString("name") + ".jpg"
 
         // create the task passing the widget view and call execute to start.
         task = ImageLoaderTask(panoWidgetView, viewOptions, panoImageName)
