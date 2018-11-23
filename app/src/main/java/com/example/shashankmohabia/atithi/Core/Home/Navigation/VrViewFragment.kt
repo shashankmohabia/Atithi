@@ -14,6 +14,7 @@ import com.bumptech.glide.request.target.SimpleTarget
 import com.bumptech.glide.request.transition.Transition
 import com.example.shashankmohabia.atithi.Data.Model_Classes.SubPlace.Companion.currentSubPlaceIndex
 import com.example.shashankmohabia.atithi.Data.Model_Classes.SubPlace.Companion.subPlacesList
+import com.google.vr.sdk.widgets.common.VrWidgetView
 import kotlinx.android.synthetic.main.vr_view_fragment.*
 
 class VrViewFragment : Fragment() {
@@ -47,6 +48,7 @@ class VrViewFragment : Fragment() {
             setInfoButtonEnabled(true)
             setStereoModeButtonEnabled(true)
             setFullscreenButtonEnabled(true)
+            displayMode = VrWidgetView.DisplayMode.FULLSCREEN_MONO
         }
         loadContent()
     }
@@ -54,11 +56,11 @@ class VrViewFragment : Fragment() {
     fun loadContent() {
         Glide.with(this)
                 .asBitmap()
-                .load(subPlacesList[currentSubPlaceIndex].vr_image_link )
+                .load(subPlacesList[currentSubPlaceIndex].vr_image_link)
                 .into(object : SimpleTarget<Bitmap>() {
                     override fun onResourceReady(resource: Bitmap, transition: Transition<in Bitmap>?) {
                         val options = VrPanoramaView.Options()
-                        options.inputType = VrPanoramaView.Options.TYPE_STEREO_OVER_UNDER
+                        options.inputType = VrPanoramaView.Options.TYPE_MONO
                         vr_view!!.loadImageFromBitmap(resource, options)
                     }
                 })
