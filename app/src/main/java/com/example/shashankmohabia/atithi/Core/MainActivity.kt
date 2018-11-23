@@ -12,13 +12,11 @@ import android.view.MenuItem
 import android.view.View
 import com.example.shashankmohabia.atithi.Core.Tour.TourFragment
 import com.example.shashankmohabia.atithi.Core.Home.LandingFragment
-import com.example.shashankmohabia.atithi.Core.Home.Navigation.VrViewFragment
 import com.example.shashankmohabia.atithi.Core.Home.PlaceInformationFragment
 import com.example.shashankmohabia.atithi.Data.API_Classes.APIInteractionListener
 import com.example.shashankmohabia.atithi.Data.API_Classes.getImageLabel
 import com.example.shashankmohabia.atithi.Data.Model_Classes.Place
 import com.example.shashankmohabia.atithi.Data.Model_Classes.Place.Companion.currentPlace
-import com.example.shashankmohabia.atithi.Data.Model_Classes.SubPlace.Companion.subPlacesList
 import com.example.shashankmohabia.atithi.Data.ServerClasses.AnotherServerInteractionListener
 import com.example.shashankmohabia.atithi.Data.ServerClasses.ServerInteractionListener
 import com.example.shashankmohabia.atithi.Data.ServerClasses.getPlaceData

@@ -1,7 +1,6 @@
 package com.example.shashankmohabia.atithi.Core.Home.Navigation
-
 import android.app.usage.UsageEvents.Event.NONE
-
+import android.graphics.Bitmap
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import com.bumptech.glide.Glide
@@ -13,8 +12,12 @@ import kotlinx.android.synthetic.main.navigation_content.*
 import android.support.constraint.ConstraintLayout
 import android.view.*
 import android.widget.FrameLayout
+import com.bumptech.glide.request.target.SimpleTarget
+import com.bumptech.glide.request.transition.Transition
 import com.example.shashankmohabia.atithi.Data.Model_Classes.SubPlace.Companion.updateCurrentSubPlaceIndex
 import com.example.shashankmohabia.atithi.Utils.Extensions.*
+import com.google.vr.sdk.widgets.pano.VrPanoramaView
+import kotlinx.android.synthetic.main.vr_view_fragment.*
 
 
 class NavigationActivity : AppCompatActivity() {
@@ -31,7 +34,16 @@ class NavigationActivity : AppCompatActivity() {
         setSupportActionBar(navigation_toolbar)
 
         setFloatingButtons()
+    }
 
+    private fun loadVrView() {
+        vr_view!!.apply {
+            setFlingingEnabled(true)
+            setInfoButtonEnabled(false)
+            setStereoModeButtonEnabled(true)
+            setFullscreenButtonEnabled(true)
+        }
+        loadContent()
     }
 
     private fun updateView() {
@@ -66,8 +78,23 @@ class NavigationActivity : AppCompatActivity() {
         }
 
         navigation_360view.setOnClickListener {
-            startFragmentTransaction(VrViewFragment(), navigation_frame)
+            setContentView(R.layout.vr_view_fragment)
+            loadVrView()
+            //startFragmentTransaction(VrViewFragment(), navigation_frame)
         }
+    }
+
+    private fun loadContent() {
+        Glide.with(this)
+                .asBitmap()
+                .load(subPlacesList[currentSubPlaceIndex].vr_image_link)
+                .into(object : SimpleTarget<Bitmap>() {
+                    override fun onResourceReady(resource: Bitmap, transition: Transition<in Bitmap>?) {
+                        val options = VrPanoramaView.Options()
+                        options.inputType = VrPanoramaView.Options.TYPE_MONO
+                        vr_view!!.loadImageFromBitmap(resource, options)
+                    }
+                })
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -89,7 +116,6 @@ class NavigationActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         currentSubPlaceIndex = item.itemId.toString().toInt()
         updateView()
-
         return true
     }
 }

@@ -10,7 +10,9 @@ import com.example.shashankmohabia.atithi.R
 import android.R.attr.fragment
 import android.os.Bundle
 import android.os.Parcelable
+import android.view.View
 import android.widget.FrameLayout
+import kotlinx.android.synthetic.main.navigation_main.*
 
 
 fun AppCompatActivity.startFragmentTransaction(fragment: Fragment, frame: FrameLayout, stateLossAllowed: Boolean = false, data: Any? = null) {
