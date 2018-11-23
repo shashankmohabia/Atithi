@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import com.example.shashankmohabia.atithi.R
 import com.google.vr.sdk.widgets.pano.VrPanoramaView
 import android.support.annotation.Nullable
+import kotlinx.android.synthetic.main.navigation_main.*
 
 
 // TODO: Rename parameter arguments, choose names that match

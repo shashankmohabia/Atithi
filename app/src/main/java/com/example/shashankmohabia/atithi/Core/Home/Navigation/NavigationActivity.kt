@@ -2,6 +2,8 @@ package com.example.shashankmohabia.atithi.Core.Home.Navigation
 
 import android.app.usage.UsageEvents.Event.NONE
 import android.net.Uri
+
+import android.view.View
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
@@ -70,6 +72,7 @@ class NavigationActivity : AppCompatActivity(){
 
         navigation_360view.setOnClickListener {
            startFragmentTransaction(VrViewFragment(), navigation_frame)
+            navigation_appbar.visibility = View.INVISIBLE
         }
     }
 
@@ -83,6 +86,7 @@ class NavigationActivity : AppCompatActivity(){
 
     override fun onBackPressed() {
         if ((findViewById<ViewGroup>(android.R.id.content)).getChildAt(0).id == R.id._360Frame) {
+            navigation_appbar.visibility = View.VISIBLE
             restartActivity()
         } else {
             super.onBackPressed()
