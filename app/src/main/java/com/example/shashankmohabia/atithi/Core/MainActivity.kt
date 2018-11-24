@@ -99,8 +99,8 @@ class MainActivity :
 
             if (requestCode == SEARCH_OBJECT_REQUEST_CODE && resultCode == RESULT_OK) {
                 val imageBitmap = data!!.extras.get("data") as Bitmap
-                val path = persistImage(imageBitmap)
-                //Log.d("Lakshya", path)
+                /*val path = persistImage(imageBitmap)*/
+                val path = imageBitmap.getFilePath(this)
                 uploadPhotoToServer(path, this, object : ImageUpload {
                     override fun onImageUpload(token: String) {
                         progressDialog.dismiss()
