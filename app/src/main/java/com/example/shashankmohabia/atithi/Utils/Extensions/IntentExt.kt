@@ -46,7 +46,8 @@ fun AppCompatActivity.getCameraIntent(REQUEST_CODE: Int) {
     }
 }
 
-fun AppCompatActivity.searchGoogleImages(url: String) {
+fun AppCompatActivity.searchGoogleImages(token: String) {
+    val url = "https://images.google.com/searchbyimage?image_url=http://home.iitj.ac.in/~suthar.2/Lakshay/$token"
     startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(url)))
 }
 

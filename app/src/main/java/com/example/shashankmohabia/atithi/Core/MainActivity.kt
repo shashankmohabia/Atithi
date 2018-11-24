@@ -100,11 +100,9 @@ class MainActivity :
             val path = persistImage(imageBitmap)
             //Log.d("Lakshya", path)
             uploadPhotoToServer(path, this, object : ImageUpload {
-                override fun onImageUpload(string: String) {
-                    val url = "https://images.google.com/searchbyimage?image_url=http://home.iitj.ac.in/~suthar.2/Lakshay/$string"
-                    searchGoogleImages(url)
+                override fun onImageUpload(token: String) {
+                    searchGoogleImages(token)
                 }
-
             })
         }
     }
