@@ -55,7 +55,6 @@ fun uploadPhotoToServer(imgPath: String, ctx: Context, callback:ImageUpload) {
             val out = DataOutputStream(connection.outputStream)
             out.writeBytes(stringData)
             out.flush()
-
             var bytesRead: Int
             val buf = ByteArray(1024)
             val bufInput = BufferedInputStream(FileInputStream(sourceFile))
@@ -71,10 +70,14 @@ fun uploadPhotoToServer(imgPath: String, ctx: Context, callback:ImageUpload) {
             out.writeBytes(tail)
             out.flush()
             out.close()
+            val serverResponseCode = connection.responseCode
+            val serverResponseMessage = connection.responseMessage
+            Log.d("Lakshya", serverResponseCode.toString())
+            Log.d("Lakshya", serverResponseMessage)
             connection.disconnect()
 
         } catch (e: Exception) {
-            //Log.d("suthar", e.toString())
+            Log.d("Lakshya", e.toString())
             // Exception
         }
 
