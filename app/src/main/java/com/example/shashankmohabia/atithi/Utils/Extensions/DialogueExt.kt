@@ -3,6 +3,7 @@ package com.example.shashankmohabia.atithi.Utils.Extensions
 import android.support.v7.app.AppCompatActivity
 import org.jetbrains.anko.alert
 import android.app.ProgressDialog
+import android.view.WindowManager
 import com.example.shashankmohabia.atithi.R
 
 
@@ -17,6 +18,7 @@ fun AppCompatActivity.getProgressDialog(): ProgressDialog {
     return ProgressDialog(this)
             .apply {
                 setMessage("Loading")
+                setCanceledOnTouchOutside(false)
                 show()
             }
 }

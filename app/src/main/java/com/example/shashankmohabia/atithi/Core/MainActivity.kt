@@ -11,6 +11,7 @@ import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.view.WindowManager
 import com.example.shashankmohabia.atithi.Core.Tour.TourFragment
 import com.example.shashankmohabia.atithi.Core.Home.LandingFragment
 import com.example.shashankmohabia.atithi.Core.Home.PlaceInformationFragment
@@ -113,6 +114,7 @@ class MainActivity :
         getPlaceData(item.name + "-" + item.city, "", object : ServerInteractionListener {
             override fun onReceivePlaceData() {
                 progressDialog.dismiss()
+                window.clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
                 navigation_button.visibility = View.VISIBLE
                 startFragmentTransaction(PlaceInformationFragment(), mainFrame, true)
             }
@@ -152,6 +154,8 @@ class MainActivity :
                 }
             }
         }
+
+        //bottom_navigation.setOnNavigationItemReselectedListener {}
     }
 
     override fun onBackPressed() {
