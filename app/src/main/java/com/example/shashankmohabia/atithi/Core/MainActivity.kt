@@ -7,29 +7,27 @@ import android.support.design.widget.NavigationView
 import android.support.v4.view.GravityCompat
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import com.example.shashankmohabia.atithi.Core.Community.CommunityFragment
 import com.example.shashankmohabia.atithi.Core.Tour.TourFragment
 import com.example.shashankmohabia.atithi.Core.Home.LandingFragment
-import com.example.shashankmohabia.atithi.Core.Home.Navigation.VrViewFragment
 import com.example.shashankmohabia.atithi.Core.Home.PlaceInformationFragment
 import com.example.shashankmohabia.atithi.Data.API_Classes.APIInteractionListener
 import com.example.shashankmohabia.atithi.Data.API_Classes.getImageLabel
 import com.example.shashankmohabia.atithi.Data.Model_Classes.Place
 import com.example.shashankmohabia.atithi.Data.Model_Classes.Place.Companion.currentPlace
-import com.example.shashankmohabia.atithi.Data.Model_Classes.SubPlace.Companion.subPlacesList
-import com.example.shashankmohabia.atithi.Data.ServerClasses.AnotherServerInteractionListener
-import com.example.shashankmohabia.atithi.Data.ServerClasses.ServerInteractionListener
-import com.example.shashankmohabia.atithi.Data.ServerClasses.getPlaceData
-import com.example.shashankmohabia.atithi.Data.ServerClasses.getPlaceList
+import com.example.shashankmohabia.atithi.Data.ServerClasses.*
 import com.example.shashankmohabia.atithi.R
 import com.example.shashankmohabia.atithi.Utils.Extensions.*
 import kotlinx.android.synthetic.main.main_activity.*
 import kotlinx.android.synthetic.main.main_app_bar.*
 import kotlinx.android.synthetic.main.main_content.*
 import org.jetbrains.anko.toast
+import java.io.*
+
 
 class MainActivity :
         AppCompatActivity(),
@@ -96,11 +94,15 @@ class MainActivity :
 
         if (requestCode == SEARCH_OBJECT_REQUEST_CODE && resultCode == RESULT_OK) {
             val imageBitmap = data!!.extras.get("data") as Bitmap
-            val imageBitArray = imageBitmap.toByteArray(imageBitmap)
-            //toast(imageBitArray.toString())
-            val TestString = "encoded_image=$imageBitArray"
-            val url = "https://www.google.com/imghp?sbi=1&" + TestString
-            searchGoogleImages(url)
+            val path = persistImage(imageBitmap)
+            Log.d("Lakshya", path)
+            uploadPhotoToServer(path, this, object : ImageUpload {
+                override fun onImageUpload(string: String) {
+                    val url = "https://images.google.com/searchbyimage?image_url=http://home.iitj.ac.in/~suthar.2/Lakshay/$string"
+                    searchGoogleImages(url)
+                }
+
+            })
         }
     }
 
@@ -120,7 +122,7 @@ class MainActivity :
     }
 
     private fun setBottomNavBar() {
-        startFragmentTransaction(LandingFragment(),mainFrame)
+        startFragmentTransaction(LandingFragment(), mainFrame)
         capture_button.visibility = View.VISIBLE
         search_object_button.visibility = View.VISIBLE
         bottom_navigation.selectedItemId = R.id.home
@@ -203,6 +205,23 @@ class MainActivity :
         }
         drawer_layout.closeDrawer(GravityCompat.START)
         return true
+    }
+
+    private fun persistImage(bitmap: Bitmap): String {
+        val filesDir = this.cacheDir
+        val imageFile = File(filesDir, "image.jpg")
+
+        val os: OutputStream
+        try {
+            os = FileOutputStream(imageFile)
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, os)
+            os.flush()
+            os.close()
+        } catch (e: Exception) {
+            Log.d("Lakshya", "Error writing bitmap", e)
+        }
+        Log.d("Lakshya", "Successful")
+        return imageFile.path
     }
 }
 
