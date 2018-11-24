@@ -3,9 +3,8 @@ package com.example.shashankmohabia.atithi.Utils.Extensions
 import android.graphics.Bitmap
 import java.io.ByteArrayOutputStream
 
-
-fun Any.toByteArray(bitmap: Bitmap): ByteArray {
+fun Bitmap.toByteArray(): ByteArray {
     val stream = ByteArrayOutputStream()
-    bitmap.compress(Bitmap.CompressFormat.PNG, 90, stream)
+    this.compress(Bitmap.CompressFormat.PNG, 90, stream)
     return stream.toByteArray()
 }
