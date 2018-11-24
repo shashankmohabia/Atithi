@@ -10,12 +10,6 @@ import java.net.HttpURLConnection
 import java.net.URL
 
 import org.jetbrains.anko.doAsync
-import java.net.MalformedURLException
-
-
-/**
- * @author Lakshya Garg (garg.2@iitj.ac.in)
- */
 
 fun uploadPhotoToServer(imgPath: String, ctx: Context, callback:ImageUpload) {
 
@@ -33,7 +27,7 @@ fun uploadPhotoToServer(imgPath: String, ctx: Context, callback:ImageUpload) {
             connection.requestMethod = "POST"
             val boundary = "---------------------------boundary"
             val tail = "\r\n--$boundary--\r\n"
-            connection.setRequestProperty("Content-Type", "multipart/form-data; boundary=" + boundary)
+            connection.setRequestProperty("Content-Type", "multipart/form-data; boundary=$boundary")
             connection.doOutput = true
             connection.doInput = true
 
@@ -48,7 +42,7 @@ fun uploadPhotoToServer(imgPath: String, ctx: Context, callback:ImageUpload) {
                     + "Content-Transfer-Encoding: binary\r\n")
 
             val fileLength = sourceFile.length() + tail.length
-            val fileHeader2 = "Content-length: " + fileLength + "\r\n"
+            val fileHeader2 = "Content-length: $fileLength\r\n"
             val fileHeader = fileHeader1 + fileHeader2 + "\r\n"
             val stringData = metadataPart + fileHeader
 
@@ -80,7 +74,7 @@ fun uploadPhotoToServer(imgPath: String, ctx: Context, callback:ImageUpload) {
             connection.disconnect()
 
         } catch (e: Exception) {
-            Log.d("suthar", e.toString())
+            //Log.d("suthar", e.toString())
             // Exception
         }
 

@@ -97,7 +97,7 @@ class MainActivity :
         if (requestCode == SEARCH_OBJECT_REQUEST_CODE && resultCode == RESULT_OK) {
             val imageBitmap = data!!.extras.get("data") as Bitmap
             val path = persistImage(imageBitmap)
-            Log.d("Lakshya", path)
+            //Log.d("Lakshya", path)
             uploadPhotoToServer(path, this, object : ImageUpload {
                 override fun onImageUpload(string: String) {
                     val url = "https://images.google.com/searchbyimage?image_url=http://home.iitj.ac.in/~suthar.2/Lakshay/$string"
@@ -147,13 +147,6 @@ class MainActivity :
                         }
                     })
                 }
-               /* R.id.community -> {
-                    navigation_button.visibility = View.INVISIBLE
-                    capture_button.visibility = View.INVISIBLE
-                    search_object_button.visibility = View.INVISIBLE
-                    startFragmentTransaction(CommunityFragment(), mainFrame)
-                    return@setOnNavigationItemSelectedListener true
-                }*/
                 else -> {
                     return@setOnNavigationItemSelectedListener false
                 }
