@@ -87,6 +87,6 @@ fun uploadPhotoToServer(imgPath: String, ctx: Context, callback:ImageUpload) {
 }
 
 interface ImageUpload {
-    fun onImageUpload(string: String)
+    fun onImageUpload(token: String)
 }
 

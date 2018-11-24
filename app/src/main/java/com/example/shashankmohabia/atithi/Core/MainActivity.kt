@@ -76,10 +76,11 @@ class MainActivity :
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+
+        val progressDialog = getProgressDialog()
         if (requestCode == SEARCH_PLACE_REQUEST_CODE && resultCode == RESULT_OK) {
             val imageBitmap = data!!.extras.get("data") as Bitmap
             val imageBitArray = imageBitmap.toByteArray(imageBitmap)
-            val progressDialog = getProgressDialog()
             getImageLabel(imageBitArray, object : APIInteractionListener {
                 override fun onReceive(label: String) {
                     toast(label)
@@ -101,6 +102,7 @@ class MainActivity :
             //Log.d("Lakshya", path)
             uploadPhotoToServer(path, this, object : ImageUpload {
                 override fun onImageUpload(token: String) {
+                    progressDialog.dismiss()
                     searchGoogleImages(token)
                 }
             })
