@@ -89,7 +89,7 @@ class MainActivity :
                         getPlaceData(labelList[0], labelList[1], object : ServerInteractionListener {
                             override fun onReceivePlaceData() {
                                 progressDialog.dismiss()
-                                navigation_button.visibility = View.VISIBLE
+                                navigation_button.makeVisible()
                                 startFragmentTransaction(PlaceInformationFragment(), mainFrame, true)
                             }
                         })
@@ -119,7 +119,7 @@ class MainActivity :
             override fun onReceivePlaceData() {
                 progressDialog.dismiss()
                 window.clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
-                navigation_button.visibility = View.VISIBLE
+                navigation_button.makeVisible()
                 startFragmentTransaction(PlaceInformationFragment(), mainFrame, true)
             }
         })
@@ -127,16 +127,16 @@ class MainActivity :
 
     private fun setBottomNavBar() {
         startFragmentTransaction(LandingFragment(), mainFrame)
-        capture_button.visibility = View.VISIBLE
-        search_object_button.visibility = View.VISIBLE
+        capture_button.makeVisible()
+        search_object_button.makeVisible()
         bottom_navigation.selectedItemId = R.id.home
         bottom_navigation.setOnNavigationItemSelectedListener {
             when (it.itemId) {
                 R.id.home -> {
-                    capture_button.visibility = View.VISIBLE
-                    search_object_button.visibility = View.VISIBLE
+                    capture_button.makeVisible()
+                    search_object_button.makeVisible()
                     if (currentPlace != null) {
-                        navigation_button.visibility = View.VISIBLE
+                        navigation_button.makeVisible()
                         startFragmentTransaction(PlaceInformationFragment(), mainFrame)
                     } else startFragmentTransaction(LandingFragment(), mainFrame)
                     return@setOnNavigationItemSelectedListener true
@@ -145,9 +145,9 @@ class MainActivity :
                     val progressDialog = getProgressDialog()
                     getPlaceList(object : AnotherServerInteractionListener {
                         override fun onReceivePlaceList() {
-                            navigation_button.visibility = View.INVISIBLE
-                            capture_button.visibility = View.INVISIBLE
-                            search_object_button.visibility = View.INVISIBLE
+                            navigation_button.makeInvisible()
+                            capture_button.makeInvisible()
+                            search_object_button.makeInvisible()
                             progressDialog.dismiss()
                             startFragmentTransaction(TourFragment(), mainFrame)
                         }
@@ -158,8 +158,6 @@ class MainActivity :
                 }
             }
         }
-
-        //bottom_navigation.setOnNavigationItemReselectedListener {}
     }
 
     override fun onBackPressed() {
@@ -171,15 +169,11 @@ class MainActivity :
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        // Inflate the menu; this adds items to the action bar if it is present.
         menuInflater.inflate(R.menu.main, menu)
         return true
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         return when (item.itemId) {
             R.id.action_settings -> true
             else -> super.onOptionsItemSelected(item)
@@ -223,6 +217,8 @@ class MainActivity :
         return imageFile.path
     }
 }
+
+
 
 
 

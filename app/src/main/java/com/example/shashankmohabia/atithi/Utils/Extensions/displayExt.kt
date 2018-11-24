@@ -2,6 +2,7 @@ package com.example.shashankmohabia.atithi.Utils.Extensions
 
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
+import android.view.View
 import android.view.ViewGroup
 import android.view.Window
 import android.view.WindowManager
@@ -14,8 +15,12 @@ fun AppCompatActivity.removeStatusBar() {
             WindowManager.LayoutParams.FLAG_FULLSCREEN)
 }
 
-fun Any.toggleVisibility() {
-    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+fun View.makeVisible() {
+    this.visibility = View.VISIBLE
+}
+
+fun View.makeInvisible() {
+    this.visibility = View.INVISIBLE
 }
 
 fun ViewGroup.removeAllRectangles() {
