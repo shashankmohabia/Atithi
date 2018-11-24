@@ -17,7 +17,7 @@ class BootActivity : AppCompatActivity() {
         val intent = Intent(this, MainActivity::class.java)
         Thread {
             try {
-                sleep(3000)
+                sleep(1500)
             } catch (e: InterruptedException) {
                 e.printStackTrace()
             } finally {
