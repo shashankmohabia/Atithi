@@ -11,7 +11,6 @@ import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
-import com.example.shashankmohabia.atithi.Core.Community.CommunityFragment
 import com.example.shashankmohabia.atithi.Core.Tour.TourFragment
 import com.example.shashankmohabia.atithi.Core.Home.LandingFragment
 import com.example.shashankmohabia.atithi.Core.Home.PlaceInformationFragment
@@ -20,6 +19,10 @@ import com.example.shashankmohabia.atithi.Data.API_Classes.getImageLabel
 import com.example.shashankmohabia.atithi.Data.Model_Classes.Place
 import com.example.shashankmohabia.atithi.Data.Model_Classes.Place.Companion.currentPlace
 import com.example.shashankmohabia.atithi.Data.ServerClasses.*
+import com.example.shashankmohabia.atithi.Data.ServerClasses.AnotherServerInteractionListener
+import com.example.shashankmohabia.atithi.Data.ServerClasses.ServerInteractionListener
+import com.example.shashankmohabia.atithi.Data.ServerClasses.getPlaceData
+import com.example.shashankmohabia.atithi.Data.ServerClasses.getPlaceList
 import com.example.shashankmohabia.atithi.R
 import com.example.shashankmohabia.atithi.Utils.Extensions.*
 import kotlinx.android.synthetic.main.main_activity.*
@@ -33,7 +36,6 @@ class MainActivity :
         AppCompatActivity(),
         NavigationView.OnNavigationItemSelectedListener,
         TourFragment.TourFragmentInteractionListener,
-        CommunityFragment.OnListFragmentInteractionListener,
         PlaceInformationFragment.OnFragmentInteractionListener {
 
     private val SEARCH_OBJECT_REQUEST_CODE = 1
@@ -117,10 +119,6 @@ class MainActivity :
         })
     }
 
-    override fun onListFragmentInteraction(item: com.example.shashankmohabia.atithi.Core.Community.dummy.DummyContent.DummyItem?) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
-
     private fun setBottomNavBar() {
         startFragmentTransaction(LandingFragment(), mainFrame)
         capture_button.visibility = View.VISIBLE
@@ -149,13 +147,13 @@ class MainActivity :
                         }
                     })
                 }
-                R.id.community -> {
+               /* R.id.community -> {
                     navigation_button.visibility = View.INVISIBLE
                     capture_button.visibility = View.INVISIBLE
                     search_object_button.visibility = View.INVISIBLE
                     startFragmentTransaction(CommunityFragment(), mainFrame)
                     return@setOnNavigationItemSelectedListener true
-                }
+                }*/
                 else -> {
                     return@setOnNavigationItemSelectedListener false
                 }

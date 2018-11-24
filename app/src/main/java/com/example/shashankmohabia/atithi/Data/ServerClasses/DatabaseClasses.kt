@@ -38,6 +38,7 @@ fun AppCompatActivity.getPlaceData(place: String, subplace: String, callback: Se
                                 document.data["name"].toString(),
                                 document.data["description"].toString(),
                                 document.data["image_link"].toString(),
+                                document.data["360_image_url"].toString(),
                                 getDirectionLinks(document.data["direction_instruction"].toString())
                         )
                         subPlacesList.add(subPlace)

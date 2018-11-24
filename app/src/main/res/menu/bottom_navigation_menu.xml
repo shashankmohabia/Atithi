@@ -8,9 +8,10 @@
         android:id="@+id/tour"
         android:icon="@drawable/ic_tour"
         android:title="Tour" />
-    <item
+
+    <!--<item
         android:id="@+id/community"
         android:icon="@drawable/ic_community"
-        android:title="Community" />
+        android:title="Community" />-->
 
 </menu>

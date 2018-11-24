@@ -8,9 +8,7 @@
         android:required="true" />
 
     <uses-permission android:name="android.permission.INTERNET" />
-
-    <uses-sdk tools:overrideLibrary="com.google.vr.sdk.audio, com.google.vr.sdk.base, com.google.vr.widgets.common, com.google.vr.sdk.widgets.pano, com.google.vr.sdk.widgets.video"/>
-
+    <uses-sdk tools:overrideLibrary="com.google.vr.sdk.audio, com.google.vr.sdk.base, com.google.vr.widgets.common, com.google.vr.sdk.widgets.pano, com.google.vr.sdk.widgets.video" />
     <application
         android:allowBackup="true"
         android:icon="@drawable/app_logo"
@@ -35,7 +33,7 @@
         <activity
             android:name=".Core.Home.Navigation.NavigationActivity"
             android:label="@string/title_activity_navigation"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>
