@@ -77,35 +77,39 @@ class MainActivity :
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
 
-        val progressDialog = getProgressDialog()
-        if (requestCode == SEARCH_PLACE_REQUEST_CODE && resultCode == RESULT_OK) {
-            val imageBitmap = data!!.extras.get("data") as Bitmap
-            val imageBitArray = imageBitmap.toByteArray(imageBitmap)
-            getImageLabel(imageBitArray, object : APIInteractionListener {
-                override fun onReceive(label: String) {
-                    toast(label)
-                    val labelList = label.split("&")
-                    getPlaceData(labelList[0], labelList[1], object : ServerInteractionListener {
-                        override fun onReceivePlaceData() {
-                            progressDialog.dismiss()
-                            navigation_button.visibility = View.VISIBLE
-                            startFragmentTransaction(PlaceInformationFragment(), mainFrame, true)
-                        }
-                    })
-                }
-            })
-        }
+        if (isNetworkAvailable()) {
+            val progressDialog = getProgressDialog()
+            if (requestCode == SEARCH_PLACE_REQUEST_CODE && resultCode == RESULT_OK) {
+                val imageBitmap = data!!.extras.get("data") as Bitmap
+                val imageBitArray = imageBitmap.toByteArray(imageBitmap)
+                getImageLabel(imageBitArray, object : APIInteractionListener {
+                    override fun onReceive(label: String) {
+                        toast(label)
+                        val labelList = label.split("&")
+                        getPlaceData(labelList[0], labelList[1], object : ServerInteractionListener {
+                            override fun onReceivePlaceData() {
+                                progressDialog.dismiss()
+                                navigation_button.visibility = View.VISIBLE
+                                startFragmentTransaction(PlaceInformationFragment(), mainFrame, true)
+                            }
+                        })
+                    }
+                })
+            }
 
-        if (requestCode == SEARCH_OBJECT_REQUEST_CODE && resultCode == RESULT_OK) {
-            val imageBitmap = data!!.extras.get("data") as Bitmap
-            val path = persistImage(imageBitmap)
-            //Log.d("Lakshya", path)
-            uploadPhotoToServer(path, this, object : ImageUpload {
-                override fun onImageUpload(token: String) {
-                    progressDialog.dismiss()
-                    searchGoogleImages(token)
-                }
-            })
+            if (requestCode == SEARCH_OBJECT_REQUEST_CODE && resultCode == RESULT_OK) {
+                val imageBitmap = data!!.extras.get("data") as Bitmap
+                val path = persistImage(imageBitmap)
+                //Log.d("Lakshya", path)
+                uploadPhotoToServer(path, this, object : ImageUpload {
+                    override fun onImageUpload(token: String) {
+                        progressDialog.dismiss()
+                        searchGoogleImages(token)
+                    }
+                })
+            }
+        }else{
+            toast("Check your internet connection and try again")
         }
     }
 
