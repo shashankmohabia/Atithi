@@ -15,7 +15,12 @@ import android.widget.FrameLayout
 import kotlinx.android.synthetic.main.navigation_main.*
 
 
-fun AppCompatActivity.startFragmentTransaction(fragment: Fragment, frame: FrameLayout, stateLossAllowed: Boolean = false, data: Any? = null) {
+fun AppCompatActivity.startFragmentTransaction(fragment: Fragment, frame: FrameLayout, stateLossAllowed: Boolean = false, data: Any? = null, string: String? = "") {
+    if(string != ""){
+        val bundle = Bundle()
+        bundle.putString("name", string)
+        fragment.arguments = bundle
+    }
     if (!stateLossAllowed) {
         supportFragmentManager.beginTransaction()
                 .replace(frame.id, fragment)

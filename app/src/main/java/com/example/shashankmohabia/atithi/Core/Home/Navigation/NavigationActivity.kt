@@ -80,7 +80,6 @@ class NavigationActivity : AppCompatActivity() {
         navigation_360view.setOnClickListener {
             setContentView(R.layout.vr_view_fragment)
             loadVrView()
-            //startFragmentTransaction(VrViewFragment(), navigation_frame)
         }
     }
 
