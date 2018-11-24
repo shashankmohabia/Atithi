@@ -1,4 +1,4 @@
-package com.example.shashankmohabia.atithi.Core.Home.Navigation
+package com.example.shashankmohabia.atithi.Core.Navigation
 import android.app.usage.UsageEvents.Event.NONE
 import android.graphics.Bitmap
 import android.support.v7.app.AppCompatActivity

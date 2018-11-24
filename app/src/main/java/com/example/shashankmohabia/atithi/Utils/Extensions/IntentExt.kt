@@ -5,14 +5,9 @@ import android.net.Uri
 import android.provider.MediaStore
 import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
-import com.example.shashankmohabia.atithi.Core.Home.Navigation.NavigationActivity
-import com.example.shashankmohabia.atithi.R
-import android.R.attr.fragment
+import com.example.shashankmohabia.atithi.Core.Navigation.NavigationActivity
 import android.os.Bundle
-import android.os.Parcelable
-import android.view.View
 import android.widget.FrameLayout
-import kotlinx.android.synthetic.main.navigation_main.*
 
 
 fun AppCompatActivity.startFragmentTransaction(fragment: Fragment, frame: FrameLayout, stateLossAllowed: Boolean = false, data: Any? = null, string: String? = "") {
