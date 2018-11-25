@@ -17,7 +17,6 @@
             android:adjustViewBounds="true"
             android:contentDescription="@string/todo"
             android:scaleType="centerCrop"
-            android:src="@drawable/mehrangarh"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

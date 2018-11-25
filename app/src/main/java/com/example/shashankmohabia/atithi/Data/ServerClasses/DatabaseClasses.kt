@@ -29,6 +29,7 @@ fun AppCompatActivity.getPlaceData(place: String, subplace: String, callback: Se
         )
     }
 
+    subPlacesList.clear()
     docRef.collection("SubPlaces")
             .get()
             .addOnCompleteListener { task ->
