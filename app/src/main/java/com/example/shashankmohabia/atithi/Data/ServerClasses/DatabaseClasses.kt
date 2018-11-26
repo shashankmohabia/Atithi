@@ -48,7 +48,7 @@ fun AppCompatActivity.getPlaceData(place: String, subplace: String, callback: Se
                 } else {
                     Log.d(TAG, "Error getting documents: ", task.exception)
                 }
-                subPlacesList.reverse()
+                //subPlacesList.reverse()
                 updateCurrentSubPlaceIndex(subplace)
                 callback.onReceivePlaceData()
             }
