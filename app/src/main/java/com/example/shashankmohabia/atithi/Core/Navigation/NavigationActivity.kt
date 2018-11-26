@@ -1,4 +1,5 @@
 package com.example.shashankmohabia.atithi.Core.Navigation
+
 import android.app.usage.UsageEvents.Event.NONE
 import android.graphics.Bitmap
 import android.support.v7.app.AppCompatActivity
@@ -18,6 +19,7 @@ import com.example.shashankmohabia.atithi.Data.Model_Classes.SubPlace.Companion.
 import com.example.shashankmohabia.atithi.Utils.Extensions.*
 import com.google.vr.sdk.widgets.pano.VrPanoramaView
 import kotlinx.android.synthetic.main.vr_view_fragment.*
+import org.jetbrains.anko.toast
 
 
 class NavigationActivity : AppCompatActivity() {
@@ -78,8 +80,13 @@ class NavigationActivity : AppCompatActivity() {
         }
 
         navigation_360view.setOnClickListener {
-            setContentView(R.layout.vr_view_fragment)
-            loadVrView()
+            if (subPlacesList[currentSubPlaceIndex].vr_image_link == "") {
+                toast("360 view not available")
+            } else {
+                setContentView(R.layout.vr_view_fragment)
+                loadVrView()
+            }
+
         }
     }
 
